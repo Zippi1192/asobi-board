@@ -260,19 +260,31 @@ function loadCache(){if(DEMO)return null;try{return JSON.parse(localStorage.getI
 
 function setSync(kind,text){syncState=kind;const pill=$('syncPill');pill.className='syncpill'+(kind==='warn'?' warn':kind==='error'?' error':'');$('syncText').textContent=text}
 
+let jsonpQueue=Promise.resolve();
 function jsonp(params){
- return new Promise((resolve,reject)=>{
-  const cb='__asobiCb_'+Date.now()+'_'+Math.random().toString(36).slice(2);
+ // Apps Script ContentService の JSONP は、固定コールバック名で1件ずつ処理する。
+ // 手動テストと同じ経路に寄せ、Safari / LINE内ブラウザ / Chrome間の差を減らす。
+ const run=()=>new Promise((resolve,reject)=>{
+  const cb='asobiTest';
   const script=document.createElement('script');
   let done=false;
-  const timeout=setTimeout(()=>finish(new Error('通信がタイムアウトしました')),15000);
-  function finish(err,data){if(done)return;done=true;clearTimeout(timeout);try{delete window[cb]}catch(e){};script.remove();err?reject(err):resolve(data)}
+  const timeout=setTimeout(()=>finish(new Error('API応答がタイムアウトしました')),15000);
+  function finish(err,data){
+   if(done)return;done=true;clearTimeout(timeout);
+   try{delete window[cb]}catch(e){window[cb]=undefined}
+   try{script.remove()}catch(e){}
+   err?reject(err):resolve(data);
+  }
   window[cb]=data=>finish(null,data);
   const q=new URLSearchParams(Object.assign({},params,{callback:cb,_:Date.now()}));
   script.src=API_URL+(API_URL.includes('?')?'&':'?')+q.toString();
-  script.onerror=()=>finish(new Error('通信できませんでした'));
+  script.async=true;
+  script.onerror=()=>finish(new Error('APIスクリプトを読み込めませんでした'));
   document.head.appendChild(script);
  });
+ const task=jsonpQueue.then(run,run);
+ jsonpQueue=task.catch(()=>{});
+ return task;
 }
 
 function submitHiddenPost(action,data,requestId){
@@ -337,7 +349,8 @@ async function refresh(showToast){
   const cached=loadCache();
   if(!state.events.length&&cached){state=cached;sortEvents();renderAll();setSync('warn','前回データを表示中')}
   else if(state.events.length){setSync('warn','前回データを表示中')}
-  else{setSync('error','読み込み失敗');renderAll()}
+  else{setSync('error','読み込み失敗（API接続）');renderAll()}
+  console.error('[ASOBI BOARD] refresh failed:',e);
   if(showToast)toast(e.message||'読み込みに失敗しました');
  }
 }
