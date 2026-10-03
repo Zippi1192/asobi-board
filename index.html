@@ -13,354 +13,430 @@
       --open:#ff7068;--open-bg:#fff0ee;--idea:#eda62b;--idea-bg:#fff7e2;
       --scheduled:#3e93df;--scheduled-bg:#edf6ff;--closed:#88929d;--closed-bg:#f1f3f5;
       --green:#2a9d68;--green-bg:#edf9f3;--shadow:0 5px 0 rgba(0,0,0,.055);
-      --safe-b:env(safe-area-inset-bottom,0px);
+      --safe-b:env(safe-area-inset-bottom,0px)
     }
     *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
     html{background:var(--bg)}
     body{margin:0;background:var(--bg);color:var(--ink);font-family:-apple-system,BlinkMacSystemFont,"Hiragino Kaku Gothic ProN","Yu Gothic",Meiryo,sans-serif;line-height:1.5}
-    button,input,select,textarea{font:inherit}
-    button{cursor:pointer}
-    a{color:#246db5}
-    .app{max-width:1040px;margin:0 auto;padding:14px 14px calc(92px + var(--safe-b))}
-    .hero{position:relative;overflow:hidden;border:2px solid #242424;border-radius:26px;background:linear-gradient(135deg,#fff4bf,#dff4ff 58%,#eaf6d9);padding:18px;box-shadow:var(--shadow)}
-    .hero:after{content:"🎪  🎲  🧩  🍻  🏕️  🎮";position:absolute;right:10px;bottom:5px;font-size:27px;opacity:.16;white-space:nowrap}
-    .eyebrow{font-weight:950;font-size:11px;letter-spacing:.1em}.hero h1{margin:7px 0 5px;font-size:clamp(30px,6.8vw,54px);line-height:1;font-weight:950;letter-spacing:-.045em}.hero p{margin:0;font-size:12px;font-weight:800;max-width:720px}
-    .demo-banner,.notice{margin-top:10px;border-radius:14px;padding:10px 12px;font-size:12px;font-weight:750}
-    .demo-banner{background:#fff4cb;border:1px solid #e5cc65;color:#564812}.notice{background:#eef7ff;border:1px solid #bddcf7;color:#315875}
-    .toolbar{display:flex;gap:8px;flex-wrap:wrap;margin:12px 0 8px}.btn{border:1px solid #d7d0c6;background:#fff;border-radius:999px;padding:9px 13px;font-weight:900;box-shadow:0 2px 0 rgba(0,0,0,.04);min-height:42px}.btn.primary{background:#202124;color:#fff;border-color:#202124}.btn.accent{background:#fff1ad}.btn.admin{background:#edf4ff}.btn.danger{background:#fff0ee;color:#b73932;border-color:#ffc4bf}.btn:disabled{opacity:.45;cursor:not-allowed}
-    .identity{display:flex;align-items:center;gap:8px;margin:8px 0 4px;padding:10px 12px;border:1px solid var(--line);background:rgba(255,255,255,.75);border-radius:15px}.identity .who{font-weight:900;flex:1;min-width:0}.identity .who span{color:var(--muted);font-weight:700;font-size:12px}.identity button{border:0;background:none;color:#27699d;font-weight:850;padding:4px}
-    .filters{display:flex;gap:7px;overflow-x:auto;padding:8px 0 10px;scrollbar-width:none}.filters::-webkit-scrollbar{display:none}.filters button{flex:0 0 auto;border:1px solid #d8d1c8;background:#fff;border-radius:999px;padding:8px 12px;font-size:13px;font-weight:850}.filters button.active{background:#202124;color:#fff;border-color:#202124}
-    .section-title{display:flex;justify-content:space-between;gap:10px;align-items:end;margin:6px 2px 8px}.section-title h2{font-size:18px;margin:0}.section-title span{font-size:11px;color:var(--muted);text-align:right}
-    .cards{display:grid;gap:10px}.card{background:var(--paper);border:2px solid var(--line);border-radius:20px;overflow:hidden;display:grid;grid-template-columns:118px minmax(0,1fr) 210px;min-height:128px;box-shadow:0 3px 0 rgba(0,0,0,.035)}.card[data-status="open"]{border-color:#ff8982}.card[data-status="idea"]{border-color:#efb845}.card[data-status="scheduled"]{border-color:#75b6ee}.card[data-status="closed"]{border-color:#c9ced4;opacity:.9}.datebox{padding:14px 8px;display:flex;flex-direction:column;justify-content:center;align-items:center;border-right:1px dashed #d7d0c6;background:rgba(255,255,255,.5);text-align:center}.datebox .main{font-size:26px;line-height:1.05;font-weight:950;letter-spacing:-.05em}.datebox .sub{font-size:12px;font-weight:900;margin-top:4px}.content{padding:14px 15px;min-width:0}.titleline{display:flex;align-items:center;gap:9px}.emoji{font-size:34px;line-height:1}.title{font-size:20px;line-height:1.25;font-weight:950;word-break:break-word}.meta{margin-top:7px;font-size:13px;color:#4f5660;line-height:1.6}.meta .place{font-weight:850;color:#313740}.details-link{display:inline-block;margin-top:4px}.actions{border-left:1px dashed #d7d0c6;padding:12px;display:flex;flex-direction:column;justify-content:center;gap:8px}.status{align-self:flex-start;color:#fff;border-radius:999px;padding:6px 10px;font-size:12px;font-weight:950}.status.open{background:var(--open)}.status.idea{background:var(--idea)}.status.scheduled{background:var(--scheduled)}.status.closed{background:var(--closed)}.count{font-size:12px;color:#555d67}.count strong{color:#262b31}.people{font-size:11px;color:#6a717a;line-height:1.5;word-break:break-word}.joinrow{display:flex;gap:6px}.joinrow button{flex:1;min-height:40px;border:1px solid #d6d0c7;background:#fff;border-radius:12px;padding:7px 6px;font-size:12px;font-weight:950}.joinrow button.on{background:#202124;color:#fff;border-color:#202124}.joinrow button.loading{opacity:.55}.empty{background:#fff;border:1px dashed #c9c3ba;border-radius:18px;text-align:center;color:#69717b;padding:34px 15px}.small-muted{font-size:11px;color:var(--muted)}
-    .modalback{position:fixed;z-index:50;inset:0;background:rgba(0,0,0,.47);display:none;align-items:flex-end;justify-content:center;padding:10px;padding-bottom:calc(10px + var(--safe-b))}.modalback.show{display:flex}.modal{width:min(760px,100%);max-height:91vh;overflow:auto;background:#fff;border-radius:24px 24px 17px 17px;padding:17px;-webkit-overflow-scrolling:touch}.modal h3{margin:0 0 12px;font-size:20px}.modal h4{margin:18px 0 7px}.modal-desc{margin:-4px 0 12px;color:#666f79;font-size:12px}.formgrid{display:grid;grid-template-columns:1fr 1fr;gap:10px}.field{display:flex;flex-direction:column;gap:5px}.field.full{grid-column:1/-1}.field label{font-weight:900;font-size:12px}.field input,.field select,.field textarea{width:100%;border:1px solid #d6d0c8;background:#fff;border-radius:12px;padding:11px;min-height:44px}.field textarea{min-height:78px;resize:vertical}.modalfooter{display:flex;gap:8px;justify-content:flex-end;position:sticky;bottom:-17px;background:#fff;padding:12px 0 17px;margin-top:12px}.modalfooter button{border:0;border-radius:12px;padding:11px 14px;font-weight:950}.modalfooter .save{background:#202124;color:#fff}.modalfooter .cancel{background:#eee}.choice-list{display:grid;gap:8px}.choice{display:flex;gap:9px;align-items:center;border:1px solid #ddd6cc;border-radius:14px;padding:10px;background:#fff}.choice select{flex:1;border:0;background:transparent;min-width:0;font-weight:850}.divider{height:1px;background:#ece6dd;margin:13px 0}.inline{display:flex;gap:8px;align-items:end}.inline .field{flex:1}.inline .mini{white-space:nowrap;border:0;border-radius:11px;background:#202124;color:#fff;padding:11px 13px;font-weight:900;min-height:44px}.loadingbox{padding:24px;text-align:center;color:#66707a}.spinner{width:22px;height:22px;border-radius:50%;border:3px solid #ddd;border-top-color:#222;animation:spin .7s linear infinite;margin:0 auto 8px}@keyframes spin{to{transform:rotate(360deg)}}
+    button,input,select,textarea{font:inherit}button{cursor:pointer}a{color:#246db5}
+    .app{max-width:1040px;margin:0 auto;padding:10px 12px calc(90px + var(--safe-b))}
+
+    .hero{position:relative;overflow:hidden;border:2px solid #242424;border-radius:23px;background:linear-gradient(135deg,#fff4bf,#dff4ff 58%,#eaf6d9);padding:14px 64px 14px 16px;box-shadow:var(--shadow)}
+    .hero:after{content:"🎪  🎲  🧩  🍻  🏕️  🎮";position:absolute;right:12px;bottom:3px;font-size:24px;opacity:.14;white-space:nowrap}
+    .eyebrow{font-weight:950;font-size:10px;letter-spacing:.1em}.hero h1{margin:5px 0 3px;font-size:clamp(27px,5.4vw,46px);line-height:1;font-weight:950;letter-spacing:-.045em}.hero p{margin:0;font-size:11px;font-weight:800;max-width:720px}
+    .menu-btn{position:absolute;right:12px;top:12px;z-index:2;width:42px;height:42px;border-radius:50%;border:1px solid rgba(0,0,0,.18);background:rgba(255,255,255,.85);font-weight:950;font-size:21px;box-shadow:0 2px 0 rgba(0,0,0,.06)}
+
+    .demo-banner{margin-top:8px;border-radius:12px;padding:8px 10px;font-size:11px;font-weight:750;background:#fff4cb;border:1px solid #e5cc65;color:#564812}
+    .syncbar{display:flex;align-items:center;justify-content:space-between;gap:8px;margin:8px 2px 6px;min-height:25px;font-size:11px;color:var(--muted)}
+    .syncpill{display:inline-flex;align-items:center;gap:6px;padding:5px 9px;border-radius:999px;background:#edf9f3;color:#277553;font-weight:850}
+    .syncpill.warn{background:#fff6dc;color:#8b6613}.syncpill.error{background:#fff0ee;color:#a6443f}.syncdot{width:7px;height:7px;border-radius:50%;background:currentColor}
+
+    .top-controls{display:flex;align-items:center;justify-content:space-between;gap:8px;margin:8px 0}
+    .identity-main{min-width:0;border:1px solid #d7d0c6;background:#fff;border-radius:14px;padding:10px 13px;font-weight:950;box-shadow:0 2px 0 rgba(0,0,0,.04);text-align:left;flex:1;max-width:420px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+    .identity-main.empty{background:#fff1ad}
+    .view-switch{display:flex;border:1px solid #d6d0c7;background:#fff;border-radius:12px;padding:3px;flex:0 0 auto}.view-switch button{border:0;background:transparent;border-radius:9px;padding:8px 10px;font-size:12px;font-weight:900}.view-switch button.active{background:#202124;color:#fff}
+
+    .filters{display:flex;gap:7px;overflow-x:auto;padding:4px 0 9px;scrollbar-width:none}.filters::-webkit-scrollbar{display:none}.filters button{flex:0 0 auto;border:1px solid #d8d1c8;background:#fff;border-radius:999px;padding:7px 11px;font-size:12px;font-weight:850}.filters button.active{background:#202124;color:#fff;border-color:#202124}
+    .section-title{display:flex;justify-content:space-between;gap:10px;align-items:end;margin:4px 2px 8px}.section-title h2{font-size:18px;margin:0}.section-title span{font-size:11px;color:var(--muted);text-align:right}
+
+    .cards{display:grid;gap:10px}.card{background:var(--paper);border:2px solid var(--line);border-radius:20px;overflow:hidden;display:grid;grid-template-columns:118px minmax(0,1fr) 210px;min-height:128px;box-shadow:0 3px 0 rgba(0,0,0,.035)}
+    .card[data-status="open"]{border-color:#ff8982}.card[data-status="idea"]{border-color:#efb845}.card[data-status="scheduled"]{border-color:#75b6ee}.card[data-status="closed"]{border-color:#c9ced4;opacity:.9}
+    .datebox{padding:14px 8px;display:flex;flex-direction:column;justify-content:center;align-items:center;border-right:1px dashed #d7d0c6;background:rgba(255,255,255,.5);text-align:center}.datebox .main{font-size:26px;line-height:1.05;font-weight:950;letter-spacing:-.05em}.datebox .sub{font-size:12px;font-weight:900;margin-top:4px}
+    .content{padding:14px 15px;min-width:0}.titleline{display:flex;align-items:center;gap:9px}.emoji{font-size:34px;line-height:1}.title{font-size:20px;line-height:1.25;font-weight:950;word-break:break-word}.meta{margin-top:7px;font-size:13px;color:#4f5660;line-height:1.6}.meta .place{font-weight:850;color:#313740}.details-link{display:inline-block;margin-top:4px}
+    .actions{border-left:1px dashed #d7d0c6;padding:12px;display:flex;flex-direction:column;justify-content:center;gap:8px}.status{align-self:flex-start;color:#fff;border-radius:999px;padding:6px 10px;font-size:12px;font-weight:950}.status.open{background:var(--open)}.status.idea{background:var(--idea)}.status.scheduled{background:var(--scheduled)}.status.closed{background:var(--closed)}.count{font-size:12px;color:#555d67}.count strong{color:#262b31}.people{font-size:11px;color:#6a717a;line-height:1.5;word-break:break-word}.joinrow{display:flex;gap:6px}.joinrow button{flex:1;min-height:40px;border:1px solid #d6d0c7;background:#fff;border-radius:12px;padding:7px 6px;font-size:12px;font-weight:950}.joinrow button.on{background:#202124;color:#fff;border-color:#202124}.joinrow button.loading{opacity:.55}
+    .empty{background:#fff;border:1px dashed #c9c3ba;border-radius:18px;text-align:center;color:#69717b;padding:34px 15px}.small-muted{font-size:11px;color:var(--muted)}
+
+    .calendar-wrap{background:#fff;border:1px solid var(--line);border-radius:20px;padding:12px;box-shadow:0 3px 0 rgba(0,0,0,.035)}
+    .calendar-head{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-bottom:10px}.calendar-head strong{font-size:18px}.calendar-nav{display:flex;gap:5px}.calendar-nav button{border:1px solid #d8d1c8;background:#fff;border-radius:10px;min-width:38px;height:36px;font-weight:900}.calendar-grid{display:grid;grid-template-columns:repeat(7,1fr);border-left:1px solid #ece6de;border-top:1px solid #ece6de}.cal-dow{padding:6px 3px;text-align:center;font-size:10px;font-weight:900;color:#777f87;background:#faf8f3;border-right:1px solid #ece6de;border-bottom:1px solid #ece6de}.cal-day{min-width:0;min-height:108px;padding:5px;border-right:1px solid #ece6de;border-bottom:1px solid #ece6de;background:#fff}.cal-day.out{background:#faf9f6;color:#b3b3b3}.cal-num{font-size:11px;font-weight:900;margin-bottom:3px}.cal-num.today{display:inline-flex;align-items:center;justify-content:center;width:24px;height:24px;border-radius:50%;background:#202124;color:#fff}.cal-events{display:grid;gap:3px}.cal-chip{width:100%;border:0;border-radius:7px;padding:4px 5px;text-align:left;font-size:10px;line-height:1.25;font-weight:800;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.cal-chip.open{background:var(--open-bg);color:#a63a35}.cal-chip.idea{background:var(--idea-bg);color:#8e630f}.cal-chip.scheduled{background:var(--scheduled-bg);color:#27699d}.cal-chip.closed{background:var(--closed-bg);color:#65707a}.month-undated{margin-top:12px;padding-top:10px;border-top:1px dashed #ddd5cb}.month-undated h3{font-size:13px;margin:0 0 7px}.undated-chips{display:flex;gap:6px;flex-wrap:wrap}.undated-chip{border:1px solid #d8d1c8;background:#fff;border-radius:999px;padding:7px 9px;font-size:11px;font-weight:850}
+
+    .modalback{position:fixed;z-index:50;inset:0;background:rgba(0,0,0,.47);display:none;align-items:flex-end;justify-content:center;padding:10px;padding-bottom:calc(10px + var(--safe-b))}.modalback.show{display:flex}.modal{width:min(760px,100%);max-height:91vh;overflow:auto;background:#fff;border-radius:24px 24px 17px 17px;padding:17px;-webkit-overflow-scrolling:touch}.modal h3{margin:0 0 12px;font-size:20px}.modal h4{margin:18px 0 7px}.modal-desc{margin:-4px 0 12px;color:#666f79;font-size:12px}
+    .field{display:flex;flex-direction:column;gap:5px}.field label{font-weight:900;font-size:12px}.field input,.field select,.field textarea{width:100%;border:1px solid #d6d0c8;background:#fff;border-radius:12px;padding:11px;min-height:44px}.field textarea{min-height:78px;resize:vertical}.formgrid{display:grid;grid-template-columns:1fr 1fr;gap:10px}.field.full{grid-column:1/-1}
+    .modalfooter{display:flex;gap:8px;justify-content:flex-end;position:sticky;bottom:-17px;background:#fff;padding:12px 0 17px;margin-top:12px}.modalfooter button{border:0;border-radius:12px;padding:11px 14px;font-weight:950}.modalfooter .save{background:#202124;color:#fff}.modalfooter .cancel{background:#eee}.divider{height:1px;background:#ece6dd;margin:13px 0}
+    .choice-list{display:grid;gap:8px}.choice{display:flex;gap:9px;align-items:center;border:1px solid #ddd6cc;border-radius:14px;padding:10px;background:#fff}.choice select{flex:1;border:0;background:transparent;min-width:0;font-weight:850}
+    .new-name-toggle{width:100%;border:1px dashed #cfc7bd;background:#faf8f4;border-radius:12px;padding:10px;font-weight:900;text-align:left}.new-name-panel{margin-top:8px;padding:10px;border:1px solid #ece6dd;border-radius:12px;background:#faf9f6}.inline{display:flex;gap:8px;align-items:end}.inline .field{flex:1}.inline .mini{white-space:nowrap;border:0;border-radius:11px;background:#202124;color:#fff;padding:11px 13px;font-weight:900;min-height:44px}
+    .menu-list{display:grid;gap:8px}.menu-item{width:100%;border:1px solid #ded7ce;background:#fff;border-radius:14px;padding:13px 14px;text-align:left;font-weight:900}.menu-item span{float:right;color:#8b929a}.menu-item.admin{background:#eef5ff}.menu-item.image{background:#202124;color:#fff}.menu-sep{height:1px;background:#ece6dd;margin:3px 0}
     .admin-tabs{display:flex;gap:6px;margin-bottom:12px}.admin-tabs button{border:1px solid #d9d3cb;background:#fff;border-radius:999px;padding:7px 11px;font-size:12px;font-weight:900}.admin-tabs button.active{background:#202124;color:#fff}.admin-list{display:grid;gap:8px}.admin-row{border:1px solid #ded8d0;border-radius:14px;padding:10px;background:#fff}.admin-row-top{display:flex;gap:8px;align-items:center}.admin-row-title{font-weight:900;flex:1;min-width:0}.admin-row .row-actions{display:flex;gap:6px;flex-wrap:wrap;margin-top:7px}.mini-btn{border:1px solid #d8d1c8;background:#fff;border-radius:9px;padding:6px 9px;font-size:11px;font-weight:900}.mini-btn.primary{background:#202124;color:#fff;border-color:#202124}.mini-btn.danger{color:#b43b34;background:#fff3f1;border-color:#ffcbc7}.admin-member-edit{display:grid;grid-template-columns:minmax(0,1fr) auto auto;gap:6px;align-items:center}.admin-member-edit input{min-width:0;border:1px solid #d9d2ca;border-radius:10px;padding:8px}.toggle{display:inline-flex;align-items:center;gap:5px;font-size:11px;font-weight:800}
+    .emoji-picker{display:flex;gap:6px;flex-wrap:wrap;margin-top:6px}.emoji-pick{border:1px solid #ddd6cd;background:#fff;border-radius:10px;width:39px;height:39px;font-size:22px}.emoji-pick.selected{border:2px solid #202124;background:#fff7d1}.emoji-suggest{font-size:11px;color:#68717a;margin-top:5px}.emoji-suggest button{border:0;background:#f1f4f6;border-radius:999px;padding:5px 8px;font-weight:850}
+    .detail-title{display:flex;align-items:center;gap:10px}.detail-emoji{font-size:40px}.detail-title h3{margin:0}.detail-meta{margin:10px 0;color:#515963}.detail-actions{display:flex;gap:8px}.detail-actions button{flex:1;border:1px solid #d8d1c8;background:#fff;border-radius:12px;padding:11px;font-weight:950}.detail-actions button.on{background:#202124;color:#fff;border-color:#202124}
+    .preview-img{width:100%;display:block;border-radius:14px;border:1px solid #ddd;background:#fafafa}.preview-actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}.preview-actions a,.preview-actions button{flex:1;min-width:130px;text-decoration:none;text-align:center;border:0;border-radius:12px;padding:11px 12px;background:#202124;color:#fff;font-weight:900}.preview-actions .secondary{background:#eee;color:#222}.longpress{font-size:11px;color:#6e7680;margin-top:7px}
+    .loadingbox{padding:24px;text-align:center;color:#66707a}.spinner{width:22px;height:22px;border-radius:50%;border:3px solid #ddd;border-top-color:#222;animation:spin .7s linear infinite;margin:0 auto 8px}@keyframes spin{to{transform:rotate(360deg)}}
     .toast{position:fixed;z-index:90;left:50%;bottom:calc(20px + var(--safe-b));transform:translateX(-50%) translateY(20px);opacity:0;pointer-events:none;background:#202124;color:#fff;border-radius:999px;padding:10px 15px;font-size:12px;font-weight:900;transition:.2s;max-width:90vw;text-align:center}.toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
     .fab{position:fixed;z-index:20;right:14px;bottom:calc(14px + var(--safe-b));border:0;border-radius:999px;background:#202124;color:#fff;padding:13px 16px;font-weight:950;box-shadow:0 8px 24px rgba(0,0,0,.2);display:none}.fab.show{display:block}
-    .preview-img{width:100%;display:block;border-radius:14px;border:1px solid #ddd;background:#fafafa}.preview-actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}.preview-actions a,.preview-actions button{flex:1;min-width:130px;text-decoration:none;text-align:center;border:0;border-radius:12px;padding:11px 12px;background:#202124;color:#fff;font-weight:900}.preview-actions .secondary{background:#eee;color:#222}.longpress{font-size:11px;color:#6e7680;margin-top:7px}
-    @media(max-width:760px){.app{padding-left:10px;padding-right:10px}.hero{border-radius:21px;padding:15px}.hero p{font-size:11px}.card{grid-template-columns:86px minmax(0,1fr)}.datebox{padding:12px 6px}.datebox .main{font-size:21px}.content{padding:12px}.emoji{font-size:29px}.title{font-size:17px}.actions{grid-column:1/-1;border-left:0;border-top:1px dashed #d7d0c6;padding:10px 12px;display:grid;grid-template-columns:auto 1fr;align-items:center}.actions .joinrow{grid-column:1/-1}.count{text-align:right}.people{grid-column:1/-1}.formgrid{grid-template-columns:1fr}.field.full{grid-column:auto}.toolbar{gap:6px}.btn{font-size:12px;padding:9px 11px}.section-title span{max-width:46%}.admin-member-edit{grid-template-columns:minmax(0,1fr) auto}.admin-member-edit .toggle{grid-column:1/-1}}
+
+    @media(max-width:760px){
+      .app{padding-left:9px;padding-right:9px}.hero{border-radius:20px;padding:13px 54px 13px 14px}.hero h1{font-size:clamp(27px,8.5vw,39px)}.hero p{font-size:10px;line-height:1.35}.menu-btn{width:39px;height:39px;right:9px;top:9px}.top-controls{align-items:stretch}.identity-main{font-size:13px}.view-switch button{padding:8px 8px}.card{grid-template-columns:86px minmax(0,1fr)}.datebox{padding:12px 6px}.datebox .main{font-size:21px}.content{padding:12px}.emoji{font-size:29px}.title{font-size:17px}.actions{grid-column:1/-1;border-left:0;border-top:1px dashed #d7d0c6;padding:10px 12px;display:grid;grid-template-columns:auto 1fr;align-items:center}.actions .joinrow{grid-column:1/-1}.count{text-align:right}.people{grid-column:1/-1}.formgrid{grid-template-columns:1fr}.field.full{grid-column:auto}.section-title span{max-width:48%}.admin-member-edit{grid-template-columns:minmax(0,1fr) auto}.admin-member-edit .toggle{grid-column:1/-1}.calendar-wrap{padding:7px}.cal-day{min-height:82px;padding:3px}.cal-chip{padding:3px;font-size:9px}.cal-dow{font-size:9px}.calendar-head strong{font-size:16px}
+    }
     @media(min-width:761px){.modalback{align-items:center}.modal{border-radius:24px}.fab{right:max(20px,calc((100vw - 1040px)/2 + 20px))}}
   </style>
 </head>
 <body>
-  <main class="app">
-    <section class="hero">
-      <div class="eyebrow">ASOBI CLUB</div>
-      <h1 id="appTitle">なんでもエンタメ倶楽部</h1>
-      <p id="appSubtitle">脱出・謎解き・ボドゲ・飲み会・旅行・スポーツ・ゲーム・アソビアソビ！</p>
-    </section>
+<main class="app">
+  <section class="hero">
+    <button class="menu-btn" id="menuBtn" aria-label="メニュー">☰</button>
+    <div class="eyebrow">ASOBI CLUB</div>
+    <h1 id="appTitle">なんでもエンタメ倶楽部</h1>
+    <p id="appSubtitle">脱出・謎解き・ボドゲ・飲み会・旅行・スポーツ・ゲーム・アソビアソビ！</p>
+  </section>
 
-    <div id="demoBanner" class="demo-banner" hidden>試作モードです。Google Apps Script のURLを config.js に設定すると、全員で共有できるようになります。</div>
-    <div id="networkNotice" class="notice" hidden></div>
+  <div id="demoBanner" class="demo-banner" hidden>試作モードです。Google Apps Script のURLを config.js に設定すると、全員で共有できます。</div>
+  <div class="syncbar"><div id="syncPill" class="syncpill"><span class="syncdot"></span><span id="syncText">読み込み中</span></div><span id="updatedLabel"></span></div>
 
-    <div class="toolbar">
-      <button class="btn primary" id="exportBtn">🖼 LINE用画像</button>
-      <button class="btn accent" id="identityBtn">🙋 名前を選ぶ</button>
-      <button class="btn admin" id="adminBtn">🔐 管理者</button>
-      <button class="btn" id="reloadBtn">↻ 更新</button>
-    </div>
+  <div class="top-controls">
+    <button class="identity-main empty" id="identityBtn">👤 名前を選ぶ</button>
+    <div class="view-switch"><button class="active" id="listViewBtn">☷ 一覧</button><button id="calendarViewBtn">▦ カレンダー</button></div>
+  </div>
 
-    <div class="identity" id="identityBox">
-      <div class="who" id="identityText">名前を選ぶと参加表明できます<br><span>初回は好きな表示名を登録できます</span></div>
-      <button id="identityChangeBtn">変更</button>
-    </div>
+  <div class="filters" id="filters"></div>
 
-    <div class="filters" id="filters"></div>
-    <div class="section-title"><h2>今後のアソビ予定</h2><span id="updatedLabel"></span></div>
+  <section id="listView">
+    <div class="section-title"><h2>今後のアソビ予定</h2><span id="listCount"></span></div>
     <section class="cards" id="cards"><div class="loadingbox"><div class="spinner"></div>読み込み中...</div></section>
-  </main>
+  </section>
 
-  <button class="fab" id="adminFab">＋ 予定追加</button>
-
-  <div class="modalback" id="identityModal">
-    <div class="modal">
-      <h3>あなたの名前</h3>
-      <p class="modal-desc">一度登録された名前は、次回からみんなのプルダウンに追加されます。</p>
-      <div class="field">
-        <label>登録済みの名前から選ぶ</label>
-        <select id="memberSelect"><option value="">選んでください</option></select>
-      </div>
-      <div class="divider"></div>
-      <div class="inline">
-        <div class="field"><label>新しい名前を登録</label><input id="newMemberName" maxlength="30" placeholder="例：しゅん、まゆ、カーロン"></div>
-        <button class="mini" id="registerMemberBtn">登録</button>
-      </div>
-      <div class="small-muted" style="margin-top:8px">※参加メンバーの本人確認はしません。LINEグループ内で使う前提の気軽な設計です。</div>
-      <div class="modalfooter"><button class="cancel" data-close="identityModal">閉じる</button><button class="save" id="saveIdentityBtn">この名前を使う</button></div>
+  <section id="calendarView" hidden>
+    <div class="section-title"><h2>カレンダー</h2><span>予定をタップすると詳細を見られます</span></div>
+    <div class="calendar-wrap">
+      <div class="calendar-head"><div class="calendar-nav"><button id="calPrev">‹</button><button id="calToday">今月</button></div><strong id="calTitle"></strong><div class="calendar-nav"><button id="calNext">›</button></div></div>
+      <div class="calendar-grid" id="calendarGrid"></div>
+      <div class="month-undated" id="monthUndated" hidden><h3>📌 日程未定・月内企画</h3><div class="undated-chips" id="monthUndatedChips"></div></div>
     </div>
-  </div>
+  </section>
+</main>
 
-  <div class="modalback" id="adminLoginModal">
-    <div class="modal">
-      <h3>管理者モード</h3>
-      <p class="modal-desc">管理者パスワードはGoogle側で照合します。このHTMLには保存しません。</p>
-      <div class="field"><label>管理者パスワード</label><input id="adminPasswordInput" type="password" autocomplete="current-password" placeholder="パスワード"></div>
-      <div class="modalfooter"><button class="cancel" data-close="adminLoginModal">キャンセル</button><button class="save" id="adminLoginBtn">管理者モードを開く</button></div>
+<button class="fab" id="adminFab">＋ 予定追加</button>
+
+<div class="modalback" id="menuModal">
+  <div class="modal">
+    <h3>メニュー</h3>
+    <div class="menu-list">
+      <button class="menu-item image" id="exportBtn">🖼 LINE用画像を作る <span>›</span></button>
+      <button class="menu-item admin" id="adminBtn">🔐 管理者モード <span>›</span></button>
+      <div class="menu-sep"></div>
+      <button class="menu-item" id="reloadBtn">↻ 最新情報を取得 <span>›</span></button>
+      <button class="menu-item" id="aboutBtn">ℹ️ このサイトについて <span>›</span></button>
     </div>
+    <div class="modalfooter"><button class="cancel" data-close="menuModal">閉じる</button></div>
   </div>
+</div>
 
-  <div class="modalback" id="adminModal">
-    <div class="modal">
-      <h3>管理者メニュー</h3>
-      <p class="modal-desc">予定と名前リストを編集できます。スプシを直接編集した内容もWebに反映されます。</p>
-      <div class="admin-tabs"><button class="active" data-admin-tab="events">予定</button><button data-admin-tab="members">名前リスト</button></div>
-      <div id="adminEventsPanel"><button class="btn primary" id="newEventBtn" style="margin-bottom:10px">＋ 新しい予定</button><div class="admin-list" id="adminEventList"></div></div>
-      <div id="adminMembersPanel" hidden><div class="admin-list" id="adminMemberList"></div></div>
-      <div class="modalfooter"><button class="cancel" data-close="adminModal">閉じる</button></div>
+<div class="modalback" id="aboutModal">
+  <div class="modal">
+    <h3>ASOBI BOARD</h3>
+    <p>なんでもエンタメ倶楽部の予定共有・参加表明ボードです。</p>
+    <p class="small-muted">名前はLINEグループ内で使うニックネームを想定しています。本人確認はしません。集合場所など公開したくない詳細はLINEで共有してください。</p>
+    <div class="modalfooter"><button class="cancel" data-close="aboutModal">閉じる</button></div>
+  </div>
+</div>
+
+<div class="modalback" id="identityModal">
+  <div class="modal">
+    <h3>あなたの名前</h3>
+    <p class="modal-desc">登録済みの名前を選ぶだけ。初めての人だけ、新しい名前を追加できます。</p>
+    <div class="field"><label>名前を選ぶ</label><select id="memberSelect"><option value="">選んでください</option></select></div>
+    <div class="divider"></div>
+    <button class="new-name-toggle" id="newNameToggle">＋ はじめてなので名前を追加</button>
+    <div class="new-name-panel" id="newNamePanel" hidden>
+      <div class="inline"><div class="field"><label>新しい名前</label><input id="newMemberName" maxlength="30" placeholder="例：しゅん、まゆ、カーロン"></div><button class="mini" id="registerMemberBtn">追加</button></div>
+      <div class="small-muted" style="margin-top:7px">追加した名前は、次回からみんなのリストに表示されます。名前の改名・非表示は管理者だけができます。</div>
     </div>
+    <div class="modalfooter"><button class="cancel" data-close="identityModal">閉じる</button><button class="save" id="saveIdentityBtn">この名前を使う</button></div>
   </div>
+</div>
 
-  <div class="modalback" id="eventModal">
-    <div class="modal">
-      <h3 id="eventModalTitle">予定を追加</h3>
-      <div class="formgrid">
-        <div class="field"><label>開始日</label><input id="fStartDate" type="date"></div>
-        <div class="field"><label>終了日（任意）</label><input id="fEndDate" type="date"></div>
-        <div class="field"><label>日付表示</label><input id="fDateLabel" placeholder="12/26 (土) / 1/8〜10"></div>
-        <div class="field"><label>絵文字</label><input id="fEmoji" maxlength="8" placeholder="🧩"></div>
-        <div class="field full"><label>タイトル</label><input id="fTitle" maxlength="100" placeholder="終わらないクリスマスからの脱出"></div>
-        <div class="field"><label>ステータス</label><select id="fStatus"><option value="open">募集中</option><option value="idea">企画中</option><option value="scheduled">開催予定</option><option value="closed">受付終了</option></select></div>
-        <div class="field"><label>場所</label><input id="fPlace" maxlength="100" placeholder="パシフィコ横浜"></div>
-        <div class="field"><label>定員（0＝なし）</label><input id="fCapacity" type="number" min="0" inputmode="numeric" value="0"></div>
-        <div class="field"><label>並び順（任意）</label><input id="fSortOrder" type="number" inputmode="numeric" placeholder="空欄なら日付順"></div>
-        <div class="field full"><label>ひとこと</label><textarea id="fNote" maxlength="300" placeholder="まだまだ参加募集中！"></textarea></div>
-        <div class="field full"><label>詳細URL（任意）</label><input id="fUrl" type="url" inputmode="url" placeholder="https://..."></div>
-      </div>
-      <div class="modalfooter"><button class="cancel" data-close="eventModal">キャンセル</button><button class="save" id="saveEventBtn">保存</button></div>
+<div class="modalback" id="adminLoginModal">
+  <div class="modal">
+    <h3>管理者モード</h3>
+    <p class="modal-desc">管理者パスワードはGoogle側で照合します。このHTMLには保存しません。</p>
+    <div class="field"><label>管理者パスワード</label><input id="adminPasswordInput" type="password" autocomplete="current-password" placeholder="パスワード"></div>
+    <div class="modalfooter"><button class="cancel" data-close="adminLoginModal">キャンセル</button><button class="save" id="adminLoginBtn">管理者モードを開く</button></div>
+  </div>
+</div>
+
+<div class="modalback" id="adminModal">
+  <div class="modal">
+    <h3>管理者メニュー</h3>
+    <p class="modal-desc">予定と名前リストを編集できます。スプシを直接編集した内容もWebに反映されます。</p>
+    <div class="admin-tabs"><button class="active" data-admin-tab="events">予定</button><button data-admin-tab="members">名前リスト</button></div>
+    <div id="adminEventsPanel"><button class="mini-btn primary" id="newEventBtn" style="margin-bottom:10px">＋ 新しい予定</button><div class="admin-list" id="adminEventList"></div></div>
+    <div id="adminMembersPanel" hidden><div class="admin-list" id="adminMemberList"></div></div>
+    <div class="modalfooter"><button class="cancel" data-close="adminModal">閉じる</button></div>
+  </div>
+</div>
+
+<div class="modalback" id="eventModal">
+  <div class="modal">
+    <h3 id="eventModalTitle">予定を追加</h3>
+    <div class="formgrid">
+      <div class="field"><label>開始日</label><input id="fStartDate" type="date"></div>
+      <div class="field"><label>終了日（任意）</label><input id="fEndDate" type="date"></div>
+      <div class="field"><label>日付表示</label><input id="fDateLabel" placeholder="12/26 (土) / 1/8〜10"></div>
+      <div class="field"><label>絵文字</label><input id="fEmoji" maxlength="8" placeholder="🧩"><div class="emoji-suggest" id="emojiSuggest"></div></div>
+      <div class="field full"><label>よく使うアイコン</label><div class="emoji-picker" id="emojiPicker"></div></div>
+      <div class="field full"><label>タイトル</label><input id="fTitle" maxlength="100" placeholder="終わらないクリスマスからの脱出"></div>
+      <div class="field"><label>ステータス</label><select id="fStatus"><option value="open">募集中</option><option value="idea">企画中</option><option value="scheduled">開催予定</option><option value="closed">受付終了</option></select></div>
+      <div class="field"><label>場所</label><input id="fPlace" maxlength="100" placeholder="パシフィコ横浜"></div>
+      <div class="field"><label>定員（0＝なし）</label><input id="fCapacity" type="number" min="0" inputmode="numeric" value="0"></div>
+      <div class="field"><label>並び順（任意）</label><input id="fSortOrder" type="number" inputmode="numeric" placeholder="空欄なら日付順"></div>
+      <div class="field full"><label>ひとこと</label><textarea id="fNote" maxlength="300" placeholder="まだまだ参加募集中！"></textarea></div>
+      <div class="field full"><label>詳細URL（任意）</label><input id="fUrl" type="url" inputmode="url" placeholder="https://..."></div>
     </div>
+    <div class="modalfooter"><button class="cancel" data-close="eventModal">キャンセル</button><button class="save" id="saveEventBtn">保存</button></div>
   </div>
+</div>
 
-  <div class="modalback" id="imageModal">
-    <div class="modal">
-      <h3>LINE用画像</h3>
-      <p class="modal-desc">募集中・企画中・開催予定だけを1枚にまとめます。</p>
-      <img id="previewImage" class="preview-img" alt="LINE用予定画像">
-      <div class="preview-actions"><a id="downloadImageBtn" download="asobi-board.png">画像を保存 / 開く</a><button id="shareImageBtn" hidden>共有する</button><button class="secondary" data-close="imageModal">閉じる</button></div>
-      <div class="longpress">LINE内ブラウザで保存ボタンが効かない場合は、画像を長押しして保存してください。</div>
-    </div>
+<div class="modalback" id="detailModal">
+  <div class="modal">
+    <div class="detail-title"><div class="detail-emoji" id="detailEmoji"></div><div><div class="small-muted" id="detailDate"></div><h3 id="detailTitle"></h3></div></div>
+    <div class="detail-meta" id="detailMeta"></div>
+    <div class="detail-actions" id="detailActions"></div>
+    <div class="small-muted" id="detailPeople" style="margin-top:10px"></div>
+    <div class="modalfooter"><button class="cancel" data-close="detailModal">閉じる</button></div>
   </div>
+</div>
 
-  <iframe name="asobiApiFrame" id="asobiApiFrame" style="display:none" title="API送信用"></iframe>
-  <div class="toast" id="toast"></div>
+<div class="modalback" id="imageModal">
+  <div class="modal">
+    <h3>LINE用画像</h3>
+    <p class="modal-desc">募集中・企画中・開催予定だけを1枚にまとめます。</p>
+    <img id="previewImage" class="preview-img" alt="LINE用予定画像">
+    <div class="preview-actions"><a id="downloadImageBtn" download="asobi-board.png">画像を保存 / 開く</a><button id="shareImageBtn" hidden>共有する</button><button class="secondary" data-close="imageModal">閉じる</button></div>
+    <div class="longpress">LINE内ブラウザで保存ボタンが効かない場合は、画像を長押しして保存してください。</div>
+  </div>
+</div>
+
+<iframe name="asobiApiFrame" id="asobiApiFrame" style="display:none" title="API送信用"></iframe>
+<div class="toast" id="toast"></div>
 
 <script>
 (function(){
-  'use strict';
-  const CFG = window.ASOBI_CONFIG || {};
-  const API_URL = String(CFG.API_URL || '').trim();
-  const DEMO = !API_URL;
-  const STORAGE_MEMBER = 'asobi-board-member-id';
-  const STORAGE_DEMO = 'asobi-board-demo-state-v2';
-  const STATUS = {open:'募集中', idea:'企画中', scheduled:'開催予定', closed:'受付終了'};
-  const STATUS_ORDER = {open:1, idea:2, scheduled:3, closed:4};
-  let state = {events:[], members:[], reactions:[], updatedAt:''};
-  let filter = 'active';
-  let memberId = localStorage.getItem(STORAGE_MEMBER) || '';
-  let adminPassword = '';
-  let adminMode = false;
-  let editingEventId = '';
-  let pendingRegisterName = '';
-  let lastImageFile = null;
+'use strict';
+const CFG=window.ASOBI_CONFIG||{};
+const API_URL=String(CFG.API_URL||'').trim();
+const DEMO=!API_URL;
+const STORAGE_MEMBER='asobi-board-member-id';
+const STORAGE_DEMO='asobi-board-demo-state-v22';
+const STORAGE_CACHE='asobi-board-last-good-state-v22';
+const STORAGE_VIEW='asobi-board-view-v22';
+const STATUS={open:'募集中',idea:'企画中',scheduled:'開催予定',closed:'受付終了'};
+const STATUS_ORDER={open:1,idea:2,scheduled:3,closed:4};
+const EMOJIS=['🧩','🍻','🎲','🏃','⛳','🎮','🎤','🎸','🎬','✈️','🏕️','🍖','🥩','🎄','🏠','🌸','🏊','🎳','♠️','🎉'];
+let state={events:[],members:[],reactions:[],updatedAt:''};
+let filter='active';
+let memberId=localStorage.getItem(STORAGE_MEMBER)||'';
+let adminPassword='';
+let adminMode=false;
+let editingEventId='';
+let lastImageFile=null;
+let viewMode=localStorage.getItem(STORAGE_VIEW)||'list';
+let calendarCursor=new Date();calendarCursor.setDate(1);
+let detailEventId='';
+let emojiManual=false;
+let syncState='loading';
+let lastGoodAt='';
 
-  const demoSeed = {
-    events:[
-      {id:'e1',startDate:'2026-10-11',endDate:'',dateLabel:'10/11 (日)',emoji:'⛳',title:'ぺいたかゴルフ',status:'closed',place:'',capacity:0,note:'締まりました、あざました',url:'',sortOrder:0,active:true},
-      {id:'e2',startDate:'2026-10-15',endDate:'',dateLabel:'10月',emoji:'🍻',title:'飲み会・謎解きなど企画予定',status:'idea',place:'',capacity:0,note:'なんかまた企画しやす〜',url:'',sortOrder:0,active:true},
-      {id:'e3',startDate:'2026-11-08',endDate:'',dateLabel:'11/8 (日)',emoji:'🎸',title:'ぺいたかダンスショー 生バンド',status:'scheduled',place:'川崎',capacity:0,note:'みんなで観に来てほしい〜！',url:'',sortOrder:0,active:true},
-      {id:'e4',startDate:'2026-11-14',endDate:'',dateLabel:'11/14 (土)',emoji:'🏃',title:'スパルタンレース',status:'closed',place:'千葉',capacity:23,note:'23人で出場！',url:'',sortOrder:0,active:true},
-      {id:'e5',startDate:'2026-11-15',endDate:'',dateLabel:'11月',emoji:'🌱',title:'なんか生やします',status:'idea',place:'',capacity:0,note:'楽しいこと企画予定！',url:'',sortOrder:0,active:true},
-      {id:'e6',startDate:'2026-12-04',endDate:'',dateLabel:'12/4 (金)',emoji:'🥩',title:'新進気鋭',status:'open',place:'',capacity:0,note:'行きたい方いれば！',url:'',sortOrder:0,active:true},
-      {id:'e7',startDate:'2026-12-26',endDate:'',dateLabel:'12/26 (土)',emoji:'🧩',title:'終わらないクリスマスからの脱出',status:'open',place:'パシフィコ横浜',capacity:0,note:'昼前頃から。まだまだ募集！',url:'',sortOrder:0,active:true},
-      {id:'e8',startDate:'2027-01-08',endDate:'2027-01-10',dateLabel:'1/8〜10',emoji:'🏠',title:'京都・一軒家からの脱出',status:'open',place:'京都',capacity:6,note:'あと1名募集！ニンテンドーミュージアムも行きたい。',url:'',sortOrder:0,active:true},
-      {id:'e9',startDate:'2027-01-16',endDate:'2027-01-17',dateLabel:'1/16〜17',emoji:'🏕️',title:'コテージでキャンプ',status:'scheduled',place:'場所策定中',capacity:0,note:'アッキー企画。詳細組んでいきます！',url:'',sortOrder:0,active:true}
-    ],
-    members:[{id:'m_shun',name:'しゅん',active:true},{id:'m_sample',name:'サンプル太郎',active:true}],
-    reactions:[
-      {eventId:'e8',memberId:'m_shun',reaction:'join'},
-      {eventId:'e8',memberId:'m_sample',reaction:'join'},
-      {eventId:'e7',memberId:'m_sample',reaction:'interest'}
-    ],updatedAt:new Date().toISOString()
-  };
+const demoSeed={
+ events:[
+  {id:'d1',startDate:'2026-10-15',endDate:'',dateLabel:'10月',emoji:'🍻',title:'飲み会・謎解きなど企画予定',status:'idea',place:'',capacity:0,note:'なんかまた企画しやす〜',url:'',sortOrder:0,active:true},
+  {id:'d2',startDate:'2026-11-08',endDate:'',dateLabel:'11/8 (日)',emoji:'🎸',title:'ぺいたかダンスショー 生バンド',status:'scheduled',place:'川崎',capacity:0,note:'みんなで観に来てほしい〜！',url:'',sortOrder:0,active:true},
+  {id:'d3',startDate:'2026-12-26',endDate:'',dateLabel:'12/26 (土)',emoji:'🧩',title:'終わらないクリスマスからの脱出',status:'open',place:'パシフィコ横浜',capacity:0,note:'昼前頃から。まだまだ募集！',url:'',sortOrder:0,active:true}
+ ],members:[],reactions:[],updatedAt:new Date().toISOString()
+};
 
-  const $ = id => document.getElementById(id);
-  const esc = s => String(s == null ? '' : s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
-  const norm = s => String(s||'').trim().replace(/\s+/g,' ').toLocaleLowerCase('ja');
-  const uuid = prefix => prefix + '_' + Date.now().toString(36) + '_' + Math.random().toString(36).slice(2,8);
-  const activeMember = () => state.members.find(m => m.id === memberId && m.active !== false) || null;
+const $=id=>document.getElementById(id);
+const esc=s=>String(s==null?'':s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const norm=s=>String(s||'').trim().replace(/\s+/g,' ').toLocaleLowerCase('ja');
+const uuid=prefix=>prefix+'_'+Date.now().toString(36)+'_'+Math.random().toString(36).slice(2,8);
+const activeMember=()=>state.members.find(m=>m.id===memberId&&m.active!==false)||null;
+const sleep=ms=>new Promise(r=>setTimeout(r,ms));
 
-  function toast(msg){const el=$('toast');el.textContent=msg;el.classList.add('show');clearTimeout(toast.t);toast.t=setTimeout(()=>el.classList.remove('show'),2300)}
-  function openModal(id){$(id).classList.add('show')}
-  function closeModal(id){$(id).classList.remove('show')}
-  function fmtUpdated(v){if(!v)return '';const d=new Date(v);if(Number.isNaN(d.getTime()))return '';return `${d.getFullYear()}.${d.getMonth()+1}.${d.getDate()} ${String(d.getHours()).padStart(2,'0')}:${String(d.getMinutes()).padStart(2,'0')} 更新`;}
-  function saveDemo(){if(DEMO)localStorage.setItem(STORAGE_DEMO,JSON.stringify(state));}
-  function loadDemo(){try{return JSON.parse(localStorage.getItem(STORAGE_DEMO))||JSON.parse(JSON.stringify(demoSeed))}catch(e){return JSON.parse(JSON.stringify(demoSeed))}}
+function toast(msg){const el=$('toast');el.textContent=msg;el.classList.add('show');clearTimeout(toast.t);toast.t=setTimeout(()=>el.classList.remove('show'),2400)}
+function openModal(id){$(id).classList.add('show')}
+function closeModal(id){$(id).classList.remove('show')}
+function fmtUpdated(v){if(!v)return '';const d=new Date(v);if(Number.isNaN(d.getTime()))return '';return `${d.getFullYear()}.${d.getMonth()+1}.${d.getDate()} ${String(d.getHours()).padStart(2,'0')}:${String(d.getMinutes()).padStart(2,'0')}`}
+function saveDemo(){if(DEMO)localStorage.setItem(STORAGE_DEMO,JSON.stringify(state))}
+function loadDemo(){try{return JSON.parse(localStorage.getItem(STORAGE_DEMO))||JSON.parse(JSON.stringify(demoSeed))}catch(e){return JSON.parse(JSON.stringify(demoSeed))}}
+function saveCache(){if(!DEMO)try{localStorage.setItem(STORAGE_CACHE,JSON.stringify(state));lastGoodAt=new Date().toISOString()}catch(e){}}
+function loadCache(){if(DEMO)return null;try{return JSON.parse(localStorage.getItem(STORAGE_CACHE)||'null')}catch(e){return null}}
 
-  function jsonp(params){
-    return new Promise((resolve,reject)=>{
-      const cb='__asobiCb_'+Date.now()+'_'+Math.random().toString(36).slice(2);
-      const script=document.createElement('script');
-      const timeout=setTimeout(()=>{cleanup();reject(new Error('timeout'));},12000);
-      function cleanup(){clearTimeout(timeout);delete window[cb];script.remove()}
-      window[cb]=data=>{cleanup();resolve(data)};
-      const q=new URLSearchParams(Object.assign({},params,{callback:cb,_:Date.now()}));
-      script.src=API_URL+(API_URL.includes('?')?'&':'?')+q.toString();
-      script.onerror=()=>{cleanup();reject(new Error('network'))};
-      document.head.appendChild(script);
-    });
+function setSync(kind,text){syncState=kind;const pill=$('syncPill');pill.className='syncpill'+(kind==='warn'?' warn':kind==='error'?' error':'');$('syncText').textContent=text}
+
+function jsonp(params){
+ return new Promise((resolve,reject)=>{
+  const cb='__asobiCb_'+Date.now()+'_'+Math.random().toString(36).slice(2);
+  const script=document.createElement('script');
+  let done=false;
+  const timeout=setTimeout(()=>finish(new Error('通信がタイムアウトしました')),15000);
+  function finish(err,data){if(done)return;done=true;clearTimeout(timeout);try{delete window[cb]}catch(e){};script.remove();err?reject(err):resolve(data)}
+  window[cb]=data=>finish(null,data);
+  const q=new URLSearchParams(Object.assign({},params,{callback:cb,_:Date.now()}));
+  script.src=API_URL+(API_URL.includes('?')?'&':'?')+q.toString();
+  script.onerror=()=>finish(new Error('通信できませんでした'));
+  document.head.appendChild(script);
+ });
+}
+
+function submitHiddenPost(action,data,requestId){
+ const iframe=$('asobiApiFrame');
+ const form=document.createElement('form');
+ form.method='POST';form.action=API_URL;form.target=iframe.name;form.style.display='none';form.acceptCharset='UTF-8';
+ const payload=Object.assign({},data,{action,requestId});
+ Object.entries(payload).forEach(([k,v])=>{const input=document.createElement('input');input.type='hidden';input.name=k;input.value=v==null?'':String(v);form.appendChild(input)});
+ document.body.appendChild(form);form.submit();setTimeout(()=>form.remove(),1500);
+}
+
+async function postAction(action,data){
+ if(DEMO)return demoAction(action,data);
+ const requestId=uuid('req');
+ submitHiddenPost(action,data,requestId);
+ const started=Date.now();
+ while(Date.now()-started<20000){
+  await sleep(450);
+  let s;
+  try{s=await jsonp({action:'requestStatus',requestId})}catch(e){continue}
+  if(s&&s.ok===false&&String(s.error||'').includes('unknown action')) throw new Error('Apps Script側をv2.2へ更新してください');
+  if(s&&s.ok&&s.ready){const r=s.result||{};if(r.ok)return r;throw new Error(r.error||'更新できませんでした')}
+ }
+ throw new Error('処理結果の確認がタイムアウトしました');
+}
+
+async function demoAction(action,data){
+ await sleep(140);
+ if(action==='registerMember'){
+  const name=String(data.name||'').trim();if(!name)throw new Error('名前を入力してください');
+  let m=state.members.find(x=>norm(x.name)===norm(name));if(!m){m={id:uuid('m'),name,active:true};state.members.push(m)}else m.active=true;
+  state.updatedAt=new Date().toISOString();saveDemo();return {ok:true,memberId:m.id};
+ }
+ if(action==='setReaction'){
+  const idx=state.reactions.findIndex(r=>r.eventId===data.eventId&&r.memberId===data.memberId);
+  if(data.reaction==='none'){if(idx>=0)state.reactions.splice(idx,1)}else if(idx>=0)state.reactions[idx].reaction=data.reaction;else state.reactions.push({eventId:data.eventId,memberId:data.memberId,reaction:data.reaction});
+  state.updatedAt=new Date().toISOString();saveDemo();return {ok:true};
+ }
+ if(action.startsWith('admin')){
+  if(data.adminPassword!=='demo')throw new Error('試作モードの管理者パスワードは demo です');
+  if(action==='adminSaveEvent'){const obj=JSON.parse(data.eventJson);const idx=state.events.findIndex(e=>e.id===obj.id);if(idx>=0)state.events[idx]=obj;else state.events.push(obj)}
+  else if(action==='adminSetEventActive'){const e=state.events.find(x=>x.id===data.eventId);if(e)e.active=data.active==='true'}
+  else if(action==='adminSaveMember'){const m=state.members.find(x=>x.id===data.memberId);if(m){m.name=data.name;m.active=data.active==='true'}}
+  state.updatedAt=new Date().toISOString();saveDemo();return {ok:true};
+ }
+ throw new Error('unknown action');
+}
+
+async function refresh(showToast){
+ setSync('warn','更新中…');
+ try{
+  if(DEMO){state=loadDemo()}
+  else{
+   const data=await jsonp({action:'bootstrap'});
+   if(!data||!data.ok)throw new Error(data&&data.error||'読み込みに失敗');
+   state={events:data.events||[],members:data.members||[],reactions:data.reactions||[],updatedAt:data.updatedAt||''};
+   saveCache();
   }
+  if(memberId&&!activeMember()){memberId='';localStorage.removeItem(STORAGE_MEMBER)}
+  sortEvents();renderAll();setSync('ok','最新データ');if(showToast)toast('最新情報に更新しました');
+ }catch(e){
+  const cached=loadCache();
+  if(!state.events.length&&cached){state=cached;sortEvents();renderAll();setSync('warn','前回データを表示中')}
+  else if(state.events.length){setSync('warn','前回データを表示中')}
+  else{setSync('error','読み込み失敗');renderAll()}
+  if(showToast)toast(e.message||'読み込みに失敗しました');
+ }
+}
 
-  function postAction(action, data){
-    if(DEMO) return demoAction(action,data);
-    return new Promise((resolve,reject)=>{
-      const requestId=uuid('req');
-      const iframe=$('asobiApiFrame');
-      const form=document.createElement('form');
-      form.method='POST';form.action=API_URL;form.target=iframe.name;form.style.display='none';
-      const payload=Object.assign({},data,{action,requestId});
-      Object.entries(payload).forEach(([k,v])=>{const input=document.createElement('input');input.type='hidden';input.name=k;input.value=v==null?'':String(v);form.appendChild(input)});
-      const timer=setTimeout(()=>{cleanup();reject(new Error('timeout'));},15000);
-      const onMessage=e=>{
-        const d=e.data;
-        if(e.source!==iframe.contentWindow||!d||d.source!=='asobi-board-api'||d.requestId!==requestId)return;
-        cleanup();d.ok?resolve(d):reject(new Error(d.error||'failed'));
-      };
-      function cleanup(){clearTimeout(timer);window.removeEventListener('message',onMessage);form.remove()}
-      window.addEventListener('message',onMessage);
-      document.body.appendChild(form);form.submit();
-    });
-  }
+function sortEvents(){state.events.sort((a,b)=>{const sa=Number(a.sortOrder||0),sb=Number(b.sortOrder||0);if((sa||sb)&&sa!==sb)return sa-sb;return String(a.startDate||'9999').localeCompare(String(b.startDate||'9999'))||(STATUS_ORDER[a.status]||9)-(STATUS_ORDER[b.status]||9)})}
+function reactionMapForEvent(eventId){const out={join:[],interest:[]};state.reactions.filter(r=>r.eventId===eventId).forEach(r=>{const m=state.members.find(x=>x.id===r.memberId);if(m&&m.active!==false&&out[r.reaction])out[r.reaction].push(m)});return out}
+function myReaction(eventId){const r=state.reactions.find(x=>x.eventId===eventId&&x.memberId===memberId);return r?r.reaction:''}
+function filteredEvents(){return state.events.filter(e=>e.active!==false).filter(e=>filter==='all'||(filter==='active'?e.status!=='closed':e.status===filter))}
 
-  async function demoAction(action,data){
-    await new Promise(r=>setTimeout(r,160));
-    if(action==='registerMember'){
-      const name=String(data.name||'').trim();if(!name)throw new Error('名前を入力してください');
-      let m=state.members.find(x=>norm(x.name)===norm(name));
-      if(!m){m={id:uuid('m'),name,active:true};state.members.push(m)}else m.active=true;
-      state.updatedAt=new Date().toISOString();saveDemo();return {ok:true,memberId:m.id};
-    }
-    if(action==='setReaction'){
-      const idx=state.reactions.findIndex(r=>r.eventId===data.eventId&&r.memberId===data.memberId);
-      if(data.reaction==='none'){if(idx>=0)state.reactions.splice(idx,1)}else if(idx>=0)state.reactions[idx].reaction=data.reaction;else state.reactions.push({eventId:data.eventId,memberId:data.memberId,reaction:data.reaction});
-      state.updatedAt=new Date().toISOString();saveDemo();return {ok:true};
-    }
-    if(action.startsWith('admin')){
-      if(data.adminPassword!=='demo')throw new Error('試作モードの管理者パスワードは demo です');
-      if(action==='adminSaveEvent'){
-        const obj=JSON.parse(data.eventJson);const idx=state.events.findIndex(e=>e.id===obj.id);if(idx>=0)state.events[idx]=obj;else state.events.push(obj);
-      }else if(action==='adminSetEventActive'){
-        const e=state.events.find(x=>x.id===data.eventId);if(e)e.active=data.active==='true';
-      }else if(action==='adminSaveMember'){
-        const m=state.members.find(x=>x.id===data.memberId);if(m){m.name=data.name;m.active=data.active==='true'}
-      }
-      state.updatedAt=new Date().toISOString();saveDemo();return {ok:true};
-    }
-    throw new Error('unknown action');
-  }
+function renderIdentity(){const m=activeMember();const b=$('identityBtn');b.textContent=m?`👤 ${m.name} ▾`:'👤 名前を選ぶ';b.classList.toggle('empty',!m)}
+function renderFilters(){const arr=[['active','募集中・予定'],['all','すべて'],['open','募集中'],['idea','企画中'],['scheduled','開催予定'],['closed','終了']];$('filters').innerHTML=arr.map(([k,l])=>`<button class="${filter===k?'active':''}" data-filter="${k}">${l}</button>`).join('');$('filters').querySelectorAll('[data-filter]').forEach(b=>b.onclick=()=>{filter=b.dataset.filter;renderFilters();renderCurrentView()})}
 
-  async function refresh(showNotice){
-    if(showNotice){$('networkNotice').hidden=false;$('networkNotice').textContent='最新情報を読み込み中...'}
-    try{
-      if(DEMO){state=loadDemo();}
-      else{
-        const data=await jsonp({action:'bootstrap'});
-        if(!data||!data.ok)throw new Error(data&&data.error||'読み込みに失敗');
-        state={events:data.events||[],members:data.members||[],reactions:data.reactions||[],updatedAt:data.updatedAt||''};
-      }
-      if(memberId&&!activeMember()){memberId='';localStorage.removeItem(STORAGE_MEMBER)}
-      sortEvents();renderAll();
-      if(showNotice){$('networkNotice').textContent='最新情報に更新しました';setTimeout(()=>$('networkNotice').hidden=true,1400)}
-    }catch(e){
-      $('networkNotice').hidden=false;$('networkNotice').textContent='読み込みに失敗しました。通信状態を確認して「更新」を押してください。';
-      if(!state.events.length){state=loadDemo();sortEvents();renderAll()}
-    }
-  }
-  function sortEvents(){state.events.sort((a,b)=>{const sa=Number(a.sortOrder||0),sb=Number(b.sortOrder||0);if(sa||sb){if(sa!==sb)return sa-sb}return String(a.startDate||'9999').localeCompare(String(b.startDate||'9999'))||STATUS_ORDER[a.status]-STATUS_ORDER[b.status]})}
+function eventCardHtml(e){
+ const rm=reactionMapForEvent(e.id),me=myReaction(e.id),joined=rm.join.length,remaining=e.capacity?Math.max(0,Number(e.capacity)-joined):null;
+ const count=e.capacity?`${joined}人 / ${e.capacity}人${remaining>0?` ・ あと${remaining}名`:remaining===0?' ・ 定員':''}`:(joined?`${joined}人参加予定`:'参加人数 未定');
+ const people=rm.join.length?`参加：${rm.join.map(m=>esc(m.name)).join(' / ')}`:'';const interest=rm.interest.length?`気になる：${rm.interest.map(m=>esc(m.name)).join(' / ')}`:'';
+ const dateParts=String(e.dateLabel||'').split(' '),dm=dateParts[0]||'',ds=dateParts.slice(1).join(' ');
+ return `<article class="card" data-status="${esc(e.status)}"><div class="datebox"><div class="main">${esc(dm)}</div><div class="sub">${esc(ds)}</div></div><div class="content"><div class="titleline"><div class="emoji">${esc(e.emoji||'🎉')}</div><div class="title">${esc(e.title)}</div></div><div class="meta">${e.place?`<span class="place">📍 ${esc(e.place)}</span><br>`:''}${esc(e.note||'')}${e.url?`<br><a class="details-link" href="${esc(e.url)}" target="_blank" rel="noopener noreferrer">詳細を見る ↗</a>`:''}</div></div><div class="actions"><div class="status ${esc(e.status)}">${STATUS[e.status]||e.status}</div><div class="count">👥 <strong>${count}</strong></div>${e.status!=='closed'?`<div class="joinrow"><button class="${me==='join'?'on':''}" data-react="join" data-event="${esc(e.id)}">🙋 参加</button><button class="${me==='interest'?'on':''}" data-react="interest" data-event="${esc(e.id)}">👀 気になる</button></div>`:''}<div class="people">${people}${people&&interest?'<br>':''}${interest}</div></div></article>`;
+}
 
-  function reactionMapForEvent(eventId){
-    const out={join:[],interest:[]};
-    state.reactions.filter(r=>r.eventId===eventId).forEach(r=>{const m=state.members.find(x=>x.id===r.memberId);if(m&&m.active!==false&&out[r.reaction])out[r.reaction].push(m)});return out;
-  }
-  function myReaction(eventId){const r=state.reactions.find(x=>x.eventId===eventId&&x.memberId===memberId);return r?r.reaction:''}
-  function renderIdentity(){const m=activeMember();$('identityText').innerHTML=m?`${esc(m.name)} <span>として利用中</span>`:'名前を選ぶと参加表明できます<br><span>初回は好きな表示名を登録できます</span>';}
-  function renderFilters(){const arr=[['active','募集中・予定'],['open','募集中'],['idea','企画中'],['scheduled','開催予定'],['closed','終了'],['all','全部']];$('filters').innerHTML=arr.map(([k,l])=>`<button class="${filter===k?'active':''}" data-filter="${k}">${l}</button>`).join('');$('filters').querySelectorAll('[data-filter]').forEach(b=>b.onclick=()=>{filter=b.dataset.filter;renderFilters();renderCards()})}
-  function renderCards(){
-    let list=state.events.filter(e=>e.active!==false).filter(e=>filter==='all'||(filter==='active'?e.status!=='closed':e.status===filter));
-    if(!list.length){$('cards').innerHTML='<div class="empty">該当する予定はありません。</div>';return}
-    $('cards').innerHTML=list.map(e=>{
-      const rm=reactionMapForEvent(e.id),me=myReaction(e.id),joined=rm.join.length,remaining=e.capacity?Math.max(0,Number(e.capacity)-joined):null;
-      const count=e.capacity?`${joined}人 / ${e.capacity}人${remaining>0?` ・ あと${remaining}名`:remaining===0?' ・ 定員':''}`:(joined?`${joined}人参加予定`:'参加人数 未定');
-      const people=rm.join.length?`参加：${rm.join.map(m=>esc(m.name)).join(' / ')}`:'';
-      const interest=rm.interest.length?`気になる：${rm.interest.map(m=>esc(m.name)).join(' / ')}`:'';
-      const dateParts=String(e.dateLabel||'').split(' ');const dm=dateParts[0]||'';const ds=dateParts.slice(1).join(' ');
-      return `<article class="card" data-status="${esc(e.status)}">
-        <div class="datebox"><div class="main">${esc(dm)}</div><div class="sub">${esc(ds)}</div></div>
-        <div class="content"><div class="titleline"><div class="emoji">${esc(e.emoji||'🎉')}</div><div class="title">${esc(e.title)}</div></div><div class="meta">${e.place?`<span class="place">📍 ${esc(e.place)}</span><br>`:''}${esc(e.note||'')}${e.url?`<br><a class="details-link" href="${esc(e.url)}" target="_blank" rel="noopener noreferrer">詳細を見る ↗</a>`:''}</div></div>
-        <div class="actions"><div class="status ${esc(e.status)}">${STATUS[e.status]||e.status}</div><div class="count">👥 <strong>${count}</strong></div>${e.status!=='closed'?`<div class="joinrow"><button class="${me==='join'?'on':''}" data-react="join" data-event="${esc(e.id)}">🙋 参加</button><button class="${me==='interest'?'on':''}" data-react="interest" data-event="${esc(e.id)}">👀 気になる</button></div>`:''}<div class="people">${people}${people&&interest?'<br>':''}${interest}</div></div>
-      </article>`;
-    }).join('');
-    $('cards').querySelectorAll('[data-react]').forEach(b=>b.onclick=()=>toggleReaction(b.dataset.event,b.dataset.react,b));
-  }
-  function renderMemberSelect(){const active=state.members.filter(m=>m.active!==false).sort((a,b)=>a.name.localeCompare(b.name,'ja'));$('memberSelect').innerHTML='<option value="">選んでください</option>'+active.map(m=>`<option value="${esc(m.id)}" ${m.id===memberId?'selected':''}>${esc(m.name)}</option>`).join('')}
-  function renderAdmin(){
-    $('adminEventList').innerHTML=state.events.map(e=>`<div class="admin-row"><div class="admin-row-top"><span>${esc(e.emoji||'🎉')}</span><div class="admin-row-title">${esc(e.dateLabel)} ${esc(e.title)}</div><span class="status ${esc(e.status)}">${STATUS[e.status]||e.status}</span></div><div class="small-muted">${e.active===false?'非表示':'表示中'}${e.place?' ・ '+esc(e.place):''}</div><div class="row-actions"><button class="mini-btn primary" data-edit-event="${esc(e.id)}">編集</button><button class="mini-btn ${e.active===false?'':'danger'}" data-toggle-event="${esc(e.id)}">${e.active===false?'再表示':'非表示'}</button></div></div>`).join('')||'<div class="empty">予定なし</div>';
-    $('adminMemberList').innerHTML=state.members.slice().sort((a,b)=>a.name.localeCompare(b.name,'ja')).map(m=>`<div class="admin-row"><div class="admin-member-edit"><input value="${esc(m.name)}" data-member-name="${esc(m.id)}" maxlength="30"><label class="toggle"><input type="checkbox" data-member-active="${esc(m.id)}" ${m.active!==false?'checked':''}>表示</label><button class="mini-btn primary" data-save-member="${esc(m.id)}">保存</button></div><div class="small-muted">ID: ${esc(m.id)}</div></div>`).join('')||'<div class="empty">登録名なし</div>';
-    $('adminEventList').querySelectorAll('[data-edit-event]').forEach(b=>b.onclick=()=>openEventEditor(b.dataset.editEvent));
-    $('adminEventList').querySelectorAll('[data-toggle-event]').forEach(b=>b.onclick=()=>toggleEventActive(b.dataset.toggleEvent));
-    $('adminMemberList').querySelectorAll('[data-save-member]').forEach(b=>b.onclick=()=>saveMemberAdmin(b.dataset.saveMember));
-  }
-  function renderAll(){
-    $('appTitle').textContent=CFG.APP_TITLE||'なんでもエンタメ倶楽部';$('appSubtitle').textContent=CFG.APP_SUBTITLE||'';$('demoBanner').hidden=!DEMO;$('updatedLabel').textContent=fmtUpdated(state.updatedAt);renderIdentity();renderFilters();renderCards();renderMemberSelect();if(adminMode)renderAdmin();$('adminFab').classList.toggle('show',adminMode);
-  }
+function renderCards(){const list=filteredEvents();$('listCount').textContent=`${list.length}件`;$('cards').innerHTML=list.length?list.map(eventCardHtml).join(''):'<div class="empty">該当する予定はありません。</div>';$('cards').querySelectorAll('[data-react]').forEach(b=>b.onclick=()=>toggleReaction(b.dataset.event,b.dataset.react,b))}
 
-  async function openIdentity(){renderMemberSelect();$('newMemberName').value='';openModal('identityModal')}
-  async function registerMember(){const name=$('newMemberName').value.trim();if(!name){toast('名前を入れてね');return}if(name.length>30){toast('名前は30文字以内で');return}$('registerMemberBtn').disabled=true;try{pendingRegisterName=name;const res=await postAction('registerMember',{name});if(res.memberId){memberId=res.memberId;localStorage.setItem(STORAGE_MEMBER,memberId)}await refresh(false);if(!memberId){const m=state.members.find(x=>norm(x.name)===norm(name));if(m){memberId=m.id;localStorage.setItem(STORAGE_MEMBER,memberId)}}renderMemberSelect();$('memberSelect').value=memberId;toast('名前を登録しました')}catch(e){toast(e.message||'登録できませんでした')}finally{$('registerMemberBtn').disabled=false}}
-  function saveIdentity(){const id=$('memberSelect').value;if(!id){toast('名前を選んでください');return}memberId=id;localStorage.setItem(STORAGE_MEMBER,id);closeModal('identityModal');renderAll();toast('名前を設定しました')}
-  async function toggleReaction(eventId,type,btn){
-    if(!activeMember()){await openIdentity();return}
-    const current=myReaction(eventId);const next=current===type?'none':type;btn.classList.add('loading');btn.disabled=true;
-    try{await postAction('setReaction',{eventId,memberId,reaction:next});if(DEMO){renderAll()}else await refresh(false);toast(next==='none'?'参加表明を外しました':type==='join'?'参加にしました':'気になるにしました')}
-    catch(e){toast(e.message||'更新できませんでした')}finally{btn.disabled=false;btn.classList.remove('loading')}
-  }
+function isMonthOnlyEvent(e){return /^\d{1,2}月$/.test(String(e.dateLabel||'').trim())}
+function parseYmd(s){if(!/^\d{4}-\d{2}-\d{2}$/.test(String(s||'')))return null;const [y,m,d]=s.split('-').map(Number);return new Date(y,m-1,d)}
+function sameYmd(a,b){return a&&b&&a.getFullYear()===b.getFullYear()&&a.getMonth()===b.getMonth()&&a.getDate()===b.getDate()}
+function daysForEvent(e){if(isMonthOnlyEvent(e))return[];const s=parseYmd(e.startDate);if(!s)return[];const end=parseYmd(e.endDate)||s;const days=[];let cur=new Date(s);for(let i=0;i<15&&cur<=end;i++){days.push(new Date(cur));cur.setDate(cur.getDate()+1)}return days}
 
-  async function enterAdmin(){const p=$('adminPasswordInput').value;if(!p){toast('パスワードを入力してください');return}const btn=$('adminLoginBtn');btn.disabled=true;try{await postAction('adminVerify',{adminPassword:p});adminPassword=p;adminMode=true;closeModal('adminLoginModal');renderAdmin();openModal('adminModal');$('adminFab').classList.add('show');toast('管理者モードを開きました')}catch(e){toast(e.message||'管理者パスワードを確認してください')}finally{btn.disabled=false}}
-  function openEventEditor(id){editingEventId=id||'';const e=state.events.find(x=>x.id===id)||{id:uuid('e'),startDate:'',endDate:'',dateLabel:'',emoji:'🎉',title:'',status:'open',place:'',capacity:0,note:'',url:'',sortOrder:'',active:true};$('eventModalTitle').textContent=id?'予定を編集':'予定を追加';$('fStartDate').value=e.startDate||'';$('fEndDate').value=e.endDate||'';$('fDateLabel').value=e.dateLabel||'';$('fEmoji').value=e.emoji||'🎉';$('fTitle').value=e.title||'';$('fStatus').value=e.status||'open';$('fPlace').value=e.place||'';$('fCapacity').value=e.capacity||0;$('fSortOrder').value=e.sortOrder||'';$('fNote').value=e.note||'';$('fUrl').value=e.url||'';if(!editingEventId)editingEventId=e.id;closeModal('adminModal');openModal('eventModal')}
-  async function saveEvent(){
-    const obj={id:editingEventId||uuid('e'),startDate:$('fStartDate').value,endDate:$('fEndDate').value,dateLabel:$('fDateLabel').value.trim(),emoji:$('fEmoji').value.trim()||'🎉',title:$('fTitle').value.trim(),status:$('fStatus').value,place:$('fPlace').value.trim(),capacity:Number($('fCapacity').value||0),note:$('fNote').value.trim(),url:$('fUrl').value.trim(),sortOrder:$('fSortOrder').value===''?0:Number($('fSortOrder').value),active:true};
-    const old=state.events.find(x=>x.id===obj.id);if(old&&old.active===false)obj.active=false;if(!obj.title||!obj.dateLabel){toast('日付表示とタイトルは必須です');return}$('saveEventBtn').disabled=true;
-    try{await postAction('adminSaveEvent',{adminPassword,eventJson:JSON.stringify(obj)});await refresh(false);closeModal('eventModal');renderAdmin();openModal('adminModal');toast('予定を保存しました')}catch(e){toast(e.message||'保存できませんでした')}finally{$('saveEventBtn').disabled=false}
-  }
-  async function toggleEventActive(id){const e=state.events.find(x=>x.id===id);if(!e)return;try{await postAction('adminSetEventActive',{adminPassword,eventId:id,active:String(e.active===false)});await refresh(false);renderAdmin();toast(e.active===false?'再表示しました':'非表示にしました')}catch(err){toast(err.message||'更新できませんでした')}}
-  async function saveMemberAdmin(id){const input=document.querySelector(`[data-member-name="${CSS.escape(id)}"]`);const check=document.querySelector(`[data-member-active="${CSS.escape(id)}"]`);const name=input.value.trim();if(!name){toast('名前は空にできません');return}try{await postAction('adminSaveMember',{adminPassword,memberId:id,name,active:String(check.checked)});await refresh(false);renderAdmin();toast('名前リストを更新しました')}catch(e){toast(e.message||'更新できませんでした')}}
+function renderCalendar(){
+ const y=calendarCursor.getFullYear(),m=calendarCursor.getMonth();$('calTitle').textContent=`${y}年 ${m+1}月`;
+ const first=new Date(y,m,1),start=new Date(y,m,1-first.getDay());const today=new Date();const list=filteredEvents();
+ let html=['日','月','火','水','木','金','土'].map(x=>`<div class="cal-dow">${x}</div>`).join('');
+ for(let i=0;i<42;i++){
+  const d=new Date(start);d.setDate(start.getDate()+i);const out=d.getMonth()!==m;
+  const events=list.filter(e=>daysForEvent(e).some(ed=>sameYmd(ed,d)));
+  const chips=events.slice(0,3).map(e=>`<button class="cal-chip ${esc(e.status)}" data-detail="${esc(e.id)}">${esc(e.emoji||'🎉')} ${esc(e.title)}</button>`).join('')+(events.length>3?`<div class="small-muted">+${events.length-3}件</div>`:'');
+  html+=`<div class="cal-day ${out?'out':''}"><div class="cal-num ${sameYmd(d,today)?'today':''}">${d.getDate()}</div><div class="cal-events">${chips}</div></div>`;
+ }
+ $('calendarGrid').innerHTML=html;$('calendarGrid').querySelectorAll('[data-detail]').forEach(b=>b.onclick=()=>openEventDetail(b.dataset.detail));
+ const undated=list.filter(e=>isMonthOnlyEvent(e)&&parseYmd(e.startDate)&&parseYmd(e.startDate).getFullYear()===y&&parseYmd(e.startDate).getMonth()===m);
+ $('monthUndated').hidden=!undated.length;$('monthUndatedChips').innerHTML=undated.map(e=>`<button class="undated-chip" data-detail="${esc(e.id)}">${esc(e.emoji||'🎉')} ${esc(e.title)}</button>`).join('');$('monthUndatedChips').querySelectorAll('[data-detail]').forEach(b=>b.onclick=()=>openEventDetail(b.dataset.detail));
+}
 
-  function rr(ctx,x,y,w,h,r){const q=Math.min(r,w/2,h/2);ctx.beginPath();ctx.moveTo(x+q,y);ctx.arcTo(x+w,y,x+w,y+h,q);ctx.arcTo(x+w,y+h,x,y+h,q);ctx.arcTo(x,y+h,x,y,q);ctx.arcTo(x,y,x+w,y,q);ctx.closePath()}
-  function drawText(ctx,text,x,y,size,weight,color,align){ctx.fillStyle=color||'#202124';ctx.font=`${weight||'700'} ${size}px -apple-system,BlinkMacSystemFont,"Hiragino Kaku Gothic ProN","Yu Gothic",Meiryo,sans-serif`;ctx.textAlign=align||'left';ctx.textBaseline='top';ctx.fillText(text,x,y)}
-  function wrapText(ctx,text,x,y,maxW,size,lineH,maxLines,weight,color){ctx.fillStyle=color||'#4e5660';ctx.font=`${weight||'650'} ${size}px -apple-system,BlinkMacSystemFont,"Hiragino Kaku Gothic ProN","Yu Gothic",Meiryo,sans-serif`;ctx.textAlign='left';ctx.textBaseline='top';let line='',lines=[];for(const ch of Array.from(String(text||''))){const test=line+ch;if(ctx.measureText(test).width>maxW&&line){lines.push(line);line=ch;if(lines.length>=maxLines)break}else line=test}if(lines.length<maxLines&&line)lines.push(line);lines.slice(0,maxLines).forEach((l,i)=>ctx.fillText(l,x,y+i*lineH));}
-  async function createLineImage(){
-    const list=state.events.filter(e=>e.active!==false&&e.status!=='closed').slice(0,12);if(!list.length){toast('画像にする予定がありません');return}
-    $('exportBtn').disabled=true;toast('画像をつくっています...');
-    try{
-      const W=1080,margin=42,headerH=205,cardH=160,gap=14,footerH=96,H=margin+headerH+30+list.length*(cardH+gap)+footerH+margin;const scale=2;const canvas=document.createElement('canvas');canvas.width=W*scale;canvas.height=H*scale;const ctx=canvas.getContext('2d');ctx.scale(scale,scale);ctx.fillStyle='#f7f4ed';ctx.fillRect(0,0,W,H);
-      const grad=ctx.createLinearGradient(margin,margin,W-margin,margin+headerH);grad.addColorStop(0,'#fff4bd');grad.addColorStop(.55,'#dff4ff');grad.addColorStop(1,'#e7f5d4');rr(ctx,margin,margin,W-margin*2,headerH,34);ctx.fillStyle=grad;ctx.fill();ctx.strokeStyle='#202124';ctx.lineWidth=3;ctx.stroke();drawText(ctx,'ASOBI CLUB',margin+28,margin+23,17,'900');drawText(ctx,CFG.APP_TITLE||'なんでもエンタメ倶楽部',margin+28,margin+55,49,'900');wrapText(ctx,CFG.APP_SUBTITLE||'',margin+28,margin+124,690,16,22,2,'800','#343a40');rr(ctx,W-300,margin+144,230,42,21);ctx.fillStyle='#202124';ctx.fill();drawText(ctx,'今後のアソビ予定',W-185,margin+153,18,'900','#fff','center');drawText(ctx,fmtUpdated(state.updatedAt)||'UPDATE',W-70,margin+154,12,'800','#5c6470','right');
-      let y=margin+headerH+30;
-      for(const e of list){const scheme=e.status==='open'?['#fff0ee','#ff756e']:e.status==='idea'?['#fff7e2','#eca929']:['#edf6ff','#4d9eea'];rr(ctx,margin,y,W-margin*2,cardH,24);ctx.fillStyle='#fffdf8';ctx.fill();ctx.strokeStyle=scheme[1];ctx.lineWidth=3;ctx.stroke();ctx.fillStyle=scheme[0];ctx.fillRect(margin+3,y+3,152,cardH-6);ctx.strokeStyle='#d6cec4';ctx.setLineDash([5,6]);ctx.beginPath();ctx.moveTo(margin+155,y+12);ctx.lineTo(margin+155,y+cardH-12);ctx.stroke();ctx.setLineDash([]);
-        const p=String(e.dateLabel||'').split(' ');drawText(ctx,p[0]||'',margin+79,y+39,30,'900','#202124','center');if(p.length>1)drawText(ctx,p.slice(1).join(' '),margin+79,y+82,15,'900','#202124','center');drawText(ctx,e.emoji||'🎉',margin+185,y+38,42,'700');drawText(ctx,e.title,margin+247,y+23,24,'900');const note=(e.place?'📍 '+e.place+'　':'')+(e.note||'');wrapText(ctx,note,margin+247,y+67,510,16,23,3,'650','#4d5560');rr(ctx,W-margin-174,y+22,138,38,19);ctx.fillStyle=scheme[1];ctx.fill();drawText(ctx,STATUS[e.status]||e.status,W-margin-105,y+30,15,'900','#fff','center');const rm=reactionMapForEvent(e.id),joined=rm.join.length,remaining=e.capacity?Math.max(0,e.capacity-joined):null;const c=e.capacity?`${joined}/${e.capacity}人${remaining>0?` あと${remaining}名`:''}`:(joined?`${joined}人予定`:'人数未定');drawText(ctx,'👥 '+c,W-margin-174,y+77,14,'850');const sub=e.status==='open'?'参加者募集！':e.status==='idea'?'興味ある人募集中':'詳細はWebへ';drawText(ctx,sub,W-margin-174,y+106,13,'850',e.status==='open'?'#d74c46':e.status==='idea'?'#a46d00':'#357db9');y+=cardH+gap;}
-      rr(ctx,margin,y+6,W-margin*2,footerH-14,24);ctx.fillStyle='#eaf8ff';ctx.fill();ctx.strokeStyle='#93ccea';ctx.lineWidth=2;ctx.stroke();drawText(ctx,'💡 やりたい企画があれば、LINEで気軽に案内してくだせえ！',margin+28,y+27,18,'900');drawText(ctx,'参加表明・最新状況はASOBI BOARDへ',margin+28,y+56,14,'750','#53616c');
-      const blob=await new Promise(r=>canvas.toBlob(r,'image/png',.96));const url=URL.createObjectURL(blob);$('previewImage').src=url;$('downloadImageBtn').href=url;$('downloadImageBtn').download='asobi-board.png';lastImageFile=new File([blob],'asobi-board.png',{type:'image/png'});$('shareImageBtn').hidden=!(navigator.share&&navigator.canShare&&navigator.canShare({files:[lastImageFile]}));openModal('imageModal');
-    }catch(e){toast('画像生成に失敗しました')}finally{$('exportBtn').disabled=false}
-  }
+function renderMemberSelect(){const active=state.members.filter(m=>m.active!==false).sort((a,b)=>a.name.localeCompare(b.name,'ja'));$('memberSelect').innerHTML='<option value="">選んでください</option>'+active.map(m=>`<option value="${esc(m.id)}" ${m.id===memberId?'selected':''}>${esc(m.name)}</option>`).join('')}
+function renderAdmin(){
+ $('adminEventList').innerHTML=state.events.map(e=>`<div class="admin-row"><div class="admin-row-top"><span>${esc(e.emoji||'🎉')}</span><div class="admin-row-title">${esc(e.dateLabel)} ${esc(e.title)}</div><span class="status ${esc(e.status)}">${STATUS[e.status]||e.status}</span></div><div class="small-muted">${e.active===false?'非表示':'表示中'}${e.place?' ・ '+esc(e.place):''}</div><div class="row-actions"><button class="mini-btn primary" data-edit-event="${esc(e.id)}">編集</button><button class="mini-btn ${e.active===false?'':'danger'}" data-toggle-event="${esc(e.id)}">${e.active===false?'再表示':'非表示'}</button></div></div>`).join('')||'<div class="empty">予定なし</div>';
+ $('adminMemberList').innerHTML=state.members.slice().sort((a,b)=>a.name.localeCompare(b.name,'ja')).map(m=>`<div class="admin-row"><div class="admin-member-edit"><input value="${esc(m.name)}" data-member-name="${esc(m.id)}" maxlength="30"><label class="toggle"><input type="checkbox" data-member-active="${esc(m.id)}" ${m.active!==false?'checked':''}>表示</label><button class="mini-btn primary" data-save-member="${esc(m.id)}">保存</button></div><div class="small-muted">ID: ${esc(m.id)}</div></div>`).join('')||'<div class="empty">登録名なし</div>';
+ $('adminEventList').querySelectorAll('[data-edit-event]').forEach(b=>b.onclick=()=>openEventEditor(b.dataset.editEvent));$('adminEventList').querySelectorAll('[data-toggle-event]').forEach(b=>b.onclick=()=>toggleEventActive(b.dataset.toggleEvent));$('adminMemberList').querySelectorAll('[data-save-member]').forEach(b=>b.onclick=()=>saveMemberAdmin(b.dataset.saveMember));
+}
 
-  async function shareImage(){if(!lastImageFile)return;try{await navigator.share({files:[lastImageFile],title:'ASOBI BOARD'})}catch(e){if(e.name!=='AbortError')toast('共有できませんでした')}}
+function renderCurrentView(){const list=viewMode==='list';$('listView').hidden=!list;$('calendarView').hidden=list;$('listViewBtn').classList.toggle('active',list);$('calendarViewBtn').classList.toggle('active',!list);if(list)renderCards();else renderCalendar()}
+function renderAll(){
+ $('appTitle').textContent=CFG.APP_TITLE||'なんでもエンタメ倶楽部';$('appSubtitle').textContent=CFG.APP_SUBTITLE||'';$('demoBanner').hidden=!DEMO;$('updatedLabel').textContent=state.updatedAt?`${fmtUpdated(state.updatedAt)} 更新`:'';renderIdentity();renderFilters();renderMemberSelect();renderCurrentView();if(adminMode)renderAdmin();$('adminFab').classList.toggle('show',adminMode)
+}
 
-  // Event wiring
-  document.querySelectorAll('[data-close]').forEach(b=>b.addEventListener('click',()=>closeModal(b.dataset.close)));
-  document.querySelectorAll('.modalback').forEach(m=>m.addEventListener('click',e=>{if(e.target===m)closeModal(m.id)}));
-  $('identityBtn').onclick=openIdentity;$('identityChangeBtn').onclick=openIdentity;$('registerMemberBtn').onclick=registerMember;$('saveIdentityBtn').onclick=saveIdentity;
-  $('reloadBtn').onclick=()=>refresh(true);$('exportBtn').onclick=createLineImage;$('shareImageBtn').onclick=shareImage;
-  $('adminBtn').onclick=()=>{if(adminMode){renderAdmin();openModal('adminModal')}else{$('adminPasswordInput').value='';openModal('adminLoginModal')}};$('adminLoginBtn').onclick=enterAdmin;$('adminFab').onclick=()=>openEventEditor('');$('newEventBtn').onclick=()=>openEventEditor('');$('saveEventBtn').onclick=saveEvent;
-  document.querySelectorAll('[data-admin-tab]').forEach(b=>b.onclick=()=>{document.querySelectorAll('[data-admin-tab]').forEach(x=>x.classList.toggle('active',x===b));$('adminEventsPanel').hidden=b.dataset.adminTab!=='events';$('adminMembersPanel').hidden=b.dataset.adminTab!=='members';renderAdmin()});
-  document.addEventListener('visibilitychange',()=>{if(document.visibilityState==='visible'&&!DEMO)refresh(false)});
-  $('appTitle').textContent=CFG.APP_TITLE||'なんでもエンタメ倶楽部';$('appSubtitle').textContent=CFG.APP_SUBTITLE||'';
-  refresh(false);
-  setInterval(()=>{if(!DEMO&&document.visibilityState==='visible')refresh(false)},60000);
+async function openIdentity(){renderMemberSelect();$('newMemberName').value='';$('newNamePanel').hidden=true;openModal('identityModal')}
+async function registerMember(){const name=$('newMemberName').value.trim();if(!name){toast('名前を入れてね');return}if(name.length>30){toast('名前は30文字以内で');return}const btn=$('registerMemberBtn');btn.disabled=true;try{const res=await postAction('registerMember',{name});if(res.memberId){memberId=res.memberId;localStorage.setItem(STORAGE_MEMBER,memberId)}await refresh(false);if(!memberId){const m=state.members.find(x=>norm(x.name)===norm(name));if(m){memberId=m.id;localStorage.setItem(STORAGE_MEMBER,memberId)}}renderMemberSelect();$('memberSelect').value=memberId;$('newNamePanel').hidden=true;toast('名前を追加しました')}catch(e){toast(e.message||'登録できませんでした')}finally{btn.disabled=false}}
+function saveIdentity(){const id=$('memberSelect').value;if(!id){toast('名前を選んでください');return}memberId=id;localStorage.setItem(STORAGE_MEMBER,id);closeModal('identityModal');renderAll();toast('この名前を使います')}
+
+async function toggleReaction(eventId,type,btn){
+ if(!activeMember()){await openIdentity();return}
+ const current=myReaction(eventId),next=current===type?'none':type;if(btn){btn.classList.add('loading');btn.disabled=true}
+ try{await postAction('setReaction',{eventId,memberId,reaction:next});await refresh(false);toast(next==='none'?'参加表明を外しました':type==='join'?'参加にしました':'気になるにしました');if(detailEventId===eventId)openEventDetail(eventId,true)}catch(e){toast(e.message||'更新できませんでした')}finally{if(btn){btn.disabled=false;btn.classList.remove('loading')}}
+}
+
+async function enterAdmin(){const p=$('adminPasswordInput').value;if(!p){toast('パスワードを入力してください');return}const btn=$('adminLoginBtn');btn.disabled=true;try{await postAction('adminVerify',{adminPassword:p});adminPassword=p;adminMode=true;closeModal('adminLoginModal');renderAdmin();openModal('adminModal');$('adminFab').classList.add('show');toast('管理者モードを開きました')}catch(e){toast(e.message||'管理者パスワードを確認してください')}finally{btn.disabled=false}}
+
+function guessEmoji(title){const t=String(title||'');const pairs=[[/脱出|謎|ミステリー|マダミス/, '🧩'],[/飲み|ごはん|食事|ビール|交流会/,'🍻'],[/焼肉|肉|新進気鋭/,'🥩'],[/ゴルフ/,'⛳'],[/キャンプ|コテージ/,'🏕️'],[/旅行|遠征|京都|ハワイ/,'✈️'],[/ゲーム|ゲーマー/,'🎮'],[/ボドゲ|ボードゲーム/,'🎲'],[/ダンス|ライブ|音楽|バンド/,'🎸'],[/映画|シネマ/,'🎬'],[/ラフティング|川|水上/,'🏊'],[/マラソン|レース|ラン/,'🏃'],[/クリスマス/,'🎄'],[/花見|ピクニック/,'🌸'],[/ポーカー/,'♠️']];for(const [r,e] of pairs)if(r.test(t))return e;return '🎉'}
+function renderEmojiPicker(){const cur=$('fEmoji').value||'🎉';$('emojiPicker').innerHTML=EMOJIS.map(e=>`<button type="button" class="emoji-pick ${e===cur?'selected':''}" data-emoji="${e}">${e}</button>`).join('');$('emojiPicker').querySelectorAll('[data-emoji]').forEach(b=>b.onclick=()=>{emojiManual=true;$('fEmoji').value=b.dataset.emoji;renderEmojiPicker();renderEmojiSuggestion()})}
+function renderEmojiSuggestion(){const g=guessEmoji($('fTitle').value);$('emojiSuggest').innerHTML=`タイトルからの候補：<button type="button" id="useEmojiSuggest">${g} を使う</button>`;$('useEmojiSuggest').onclick=()=>{emojiManual=true;$('fEmoji').value=g;renderEmojiPicker()}}
+function autoDateLabel(){if($('fDateLabel').dataset.manual==='1')return;const s=parseYmd($('fStartDate').value),e=parseYmd($('fEndDate').value);if(!s)return;const days=['日','月','火','水','木','金','土'];let label=`${s.getMonth()+1}/${s.getDate()} (${days[s.getDay()]})`;if(e&&e>s){label=s.getMonth()===e.getMonth()?`${s.getMonth()+1}/${s.getDate()}〜${e.getDate()}`:`${s.getMonth()+1}/${s.getDate()}〜${e.getMonth()+1}/${e.getDate()}`} $('fDateLabel').value=label}
+function openEventEditor(id){editingEventId=id||'';const e=state.events.find(x=>x.id===id)||{id:uuid('e'),startDate:'',endDate:'',dateLabel:'',emoji:'🎉',title:'',status:'open',place:'',capacity:0,note:'',url:'',sortOrder:'',active:true};$('eventModalTitle').textContent=id?'予定を編集':'予定を追加';$('fStartDate').value=e.startDate||'';$('fEndDate').value=e.endDate||'';$('fDateLabel').value=e.dateLabel||'';$('fDateLabel').dataset.manual=id?'1':'0';$('fEmoji').value=e.emoji||'🎉';emojiManual=!!id;$('fTitle').value=e.title||'';$('fStatus').value=e.status||'open';$('fPlace').value=e.place||'';$('fCapacity').value=e.capacity||0;$('fSortOrder').value=e.sortOrder||'';$('fNote').value=e.note||'';$('fUrl').value=e.url||'';if(!editingEventId)editingEventId=e.id;renderEmojiPicker();renderEmojiSuggestion();closeModal('adminModal');openModal('eventModal')}
+async function saveEvent(){const obj={id:editingEventId||uuid('e'),startDate:$('fStartDate').value,endDate:$('fEndDate').value,dateLabel:$('fDateLabel').value.trim(),emoji:$('fEmoji').value.trim()||'🎉',title:$('fTitle').value.trim(),status:$('fStatus').value,place:$('fPlace').value.trim(),capacity:Number($('fCapacity').value||0),note:$('fNote').value.trim(),url:$('fUrl').value.trim(),sortOrder:$('fSortOrder').value===''?0:Number($('fSortOrder').value),active:true};const old=state.events.find(x=>x.id===obj.id);if(old&&old.active===false)obj.active=false;if(!obj.title||!obj.dateLabel){toast('日付表示とタイトルは必須です');return}const btn=$('saveEventBtn');btn.disabled=true;try{await postAction('adminSaveEvent',{adminPassword,eventJson:JSON.stringify(obj)});await refresh(false);closeModal('eventModal');renderAdmin();openModal('adminModal');toast('予定を保存しました')}catch(e){toast(e.message||'保存できませんでした')}finally{btn.disabled=false}}
+async function toggleEventActive(id){const e=state.events.find(x=>x.id===id);if(!e)return;try{await postAction('adminSetEventActive',{adminPassword,eventId:id,active:String(e.active===false)});await refresh(false);renderAdmin();toast(e.active===false?'再表示しました':'非表示にしました')}catch(err){toast(err.message||'更新できませんでした')}}
+async function saveMemberAdmin(id){const input=document.querySelector(`[data-member-name="${CSS.escape(id)}"]`),check=document.querySelector(`[data-member-active="${CSS.escape(id)}"]`),name=input.value.trim();if(!name){toast('名前は空にできません');return}try{await postAction('adminSaveMember',{adminPassword,memberId:id,name,active:String(check.checked)});await refresh(false);renderAdmin();toast('名前リストを更新しました')}catch(e){toast(e.message||'更新できませんでした')}}
+
+function openEventDetail(id,keepOpen){const e=state.events.find(x=>x.id===id);if(!e)return;detailEventId=id;const rm=reactionMapForEvent(id),me=myReaction(id),joined=rm.join.length,remaining=e.capacity?Math.max(0,Number(e.capacity)-joined):null;$('detailEmoji').textContent=e.emoji||'🎉';$('detailDate').textContent=`${e.dateLabel||''} ・ ${STATUS[e.status]||e.status}`;$('detailTitle').textContent=e.title;$('detailMeta').innerHTML=`${e.place?`<strong>📍 ${esc(e.place)}</strong><br>`:''}${esc(e.note||'')}${e.capacity?`<br>👥 ${joined}/${e.capacity}人${remaining>0?` ・ あと${remaining}名`:''}`:joined?`<br>👥 ${joined}人参加予定`:''}${e.url?`<br><a href="${esc(e.url)}" target="_blank" rel="noopener noreferrer">詳細を見る ↗</a>`:''}`;$('detailActions').innerHTML=e.status==='closed'?'':`<button class="${me==='join'?'on':''}" data-detail-react="join">🙋 参加</button><button class="${me==='interest'?'on':''}" data-detail-react="interest">👀 気になる</button>`;$('detailPeople').innerHTML=`${rm.join.length?'参加：'+rm.join.map(m=>esc(m.name)).join(' / '):''}${rm.join.length&&rm.interest.length?'<br>':''}${rm.interest.length?'気になる：'+rm.interest.map(m=>esc(m.name)).join(' / '):''}`;$('detailActions').querySelectorAll('[data-detail-react]').forEach(b=>b.onclick=()=>toggleReaction(id,b.dataset.detailReact,b));if(!keepOpen)openModal('detailModal')}
+
+function rr(ctx,x,y,w,h,r){const q=Math.min(r,w/2,h/2);ctx.beginPath();ctx.moveTo(x+q,y);ctx.arcTo(x+w,y,x+w,y+h,q);ctx.arcTo(x+w,y+h,x,y+h,q);ctx.arcTo(x,y+h,x,y,q);ctx.arcTo(x,y,x+w,y,q);ctx.closePath()}
+function drawText(ctx,text,x,y,size,weight,color,align){ctx.fillStyle=color||'#202124';ctx.font=`${weight||'700'} ${size}px -apple-system,BlinkMacSystemFont,"Hiragino Kaku Gothic ProN","Yu Gothic",Meiryo,sans-serif`;ctx.textAlign=align||'left';ctx.textBaseline='top';ctx.fillText(text,x,y)}
+function wrapText(ctx,text,x,y,maxW,size,lineH,maxLines,weight,color){ctx.fillStyle=color||'#4e5660';ctx.font=`${weight||'650'} ${size}px -apple-system,BlinkMacSystemFont,"Hiragino Kaku Gothic ProN","Yu Gothic",Meiryo,sans-serif`;ctx.textAlign='left';ctx.textBaseline='top';let line='',lines=[];for(const ch of Array.from(String(text||''))){const test=line+ch;if(ctx.measureText(test).width>maxW&&line){lines.push(line);line=ch;if(lines.length>=maxLines)break}else line=test}if(lines.length<maxLines&&line)lines.push(line);lines.slice(0,maxLines).forEach((l,i)=>ctx.fillText(l,x,y+i*lineH))}
+async function createLineImage(){const list=state.events.filter(e=>e.active!==false&&e.status!=='closed').slice(0,12);if(!list.length){toast('画像にする予定がありません');return}closeModal('menuModal');toast('画像をつくっています...');try{const W=1080,margin=42,headerH=190,cardH=160,gap=14,footerH=96,H=margin+headerH+30+list.length*(cardH+gap)+footerH+margin,scale=2,canvas=document.createElement('canvas');canvas.width=W*scale;canvas.height=H*scale;const ctx=canvas.getContext('2d');ctx.scale(scale,scale);ctx.fillStyle='#f7f4ed';ctx.fillRect(0,0,W,H);const grad=ctx.createLinearGradient(margin,margin,W-margin,margin+headerH);grad.addColorStop(0,'#fff4bd');grad.addColorStop(.55,'#dff4ff');grad.addColorStop(1,'#e7f5d4');rr(ctx,margin,margin,W-margin*2,headerH,34);ctx.fillStyle=grad;ctx.fill();ctx.strokeStyle='#202124';ctx.lineWidth=3;ctx.stroke();drawText(ctx,'ASOBI CLUB',margin+28,margin+22,17,'900');drawText(ctx,CFG.APP_TITLE||'なんでもエンタメ倶楽部',margin+28,margin+51,46,'900');wrapText(ctx,CFG.APP_SUBTITLE||'',margin+28,margin+115,690,15,21,2,'800','#343a40');rr(ctx,W-300,margin+132,230,42,21);ctx.fillStyle='#202124';ctx.fill();drawText(ctx,'今後のアソビ予定',W-185,margin+141,18,'900','#fff','center');drawText(ctx,fmtUpdated(state.updatedAt)||'UPDATE',W-70,margin+142,12,'800','#5c6470','right');let y=margin+headerH+30;for(const e of list){const scheme=e.status==='open'?['#fff0ee','#ff756e']:e.status==='idea'?['#fff7e2','#eca929']:['#edf6ff','#4d9eea'];rr(ctx,margin,y,W-margin*2,cardH,24);ctx.fillStyle='#fffdf8';ctx.fill();ctx.strokeStyle=scheme[1];ctx.lineWidth=3;ctx.stroke();ctx.fillStyle=scheme[0];ctx.fillRect(margin+3,y+3,152,cardH-6);ctx.strokeStyle='#d6cec4';ctx.setLineDash([5,6]);ctx.beginPath();ctx.moveTo(margin+155,y+12);ctx.lineTo(margin+155,y+cardH-12);ctx.stroke();ctx.setLineDash([]);const p=String(e.dateLabel||'').split(' ');drawText(ctx,p[0]||'',margin+79,y+39,30,'900','#202124','center');if(p.length>1)drawText(ctx,p.slice(1).join(' '),margin+79,y+82,15,'900','#202124','center');drawText(ctx,e.emoji||'🎉',margin+185,y+38,42,'700');drawText(ctx,e.title,margin+247,y+23,24,'900');const note=(e.place?'📍 '+e.place+'　':'')+(e.note||'');wrapText(ctx,note,margin+247,y+67,510,16,23,3,'650','#4d5560');rr(ctx,W-margin-174,y+22,138,38,19);ctx.fillStyle=scheme[1];ctx.fill();drawText(ctx,STATUS[e.status]||e.status,W-margin-105,y+30,15,'900','#fff','center');const rm=reactionMapForEvent(e.id),joined=rm.join.length,remaining=e.capacity?Math.max(0,e.capacity-joined):null,c=e.capacity?`${joined}/${e.capacity}人${remaining>0?` あと${remaining}名`:''}`:(joined?`${joined}人予定`:'人数未定');drawText(ctx,'👥 '+c,W-margin-174,y+77,14,'850');drawText(ctx,e.status==='open'?'参加者募集！':e.status==='idea'?'興味ある人募集中':'詳細はWebへ',W-margin-174,y+106,13,'850',e.status==='open'?'#d74c46':e.status==='idea'?'#a46d00':'#357db9');y+=cardH+gap}rr(ctx,margin,y+6,W-margin*2,footerH-14,24);ctx.fillStyle='#eaf8ff';ctx.fill();ctx.strokeStyle='#93ccea';ctx.lineWidth=2;ctx.stroke();drawText(ctx,'💡 やりたい企画があれば、LINEで気軽に案内してくだせえ！',margin+28,y+27,18,'900');drawText(ctx,'参加表明・最新状況はASOBI BOARDへ',margin+28,y+56,14,'750','#53616c');const blob=await new Promise(r=>canvas.toBlob(r,'image/png',.96)),url=URL.createObjectURL(blob);$('previewImage').src=url;$('downloadImageBtn').href=url;$('downloadImageBtn').download='asobi-board.png';lastImageFile=new File([blob],'asobi-board.png',{type:'image/png'});$('shareImageBtn').hidden=!(navigator.share&&navigator.canShare&&navigator.canShare({files:[lastImageFile]}));openModal('imageModal')}catch(e){toast('画像生成に失敗しました')}}
+async function shareImage(){if(!lastImageFile)return;try{await navigator.share({files:[lastImageFile],title:'ASOBI BOARD'})}catch(e){if(e.name!=='AbortError')toast('共有できませんでした')}}
+
+function setView(mode){viewMode=mode;localStorage.setItem(STORAGE_VIEW,mode);renderCurrentView()}
+function setCalendarMonth(delta){calendarCursor.setMonth(calendarCursor.getMonth()+delta);calendarCursor.setDate(1);renderCalendar()}
+
+// Event wiring
+document.querySelectorAll('[data-close]').forEach(b=>b.addEventListener('click',()=>closeModal(b.dataset.close)));
+document.querySelectorAll('.modalback').forEach(m=>m.addEventListener('click',e=>{if(e.target===m)closeModal(m.id)}));
+$('menuBtn').onclick=()=>openModal('menuModal');$('aboutBtn').onclick=()=>{closeModal('menuModal');openModal('aboutModal')};
+$('identityBtn').onclick=openIdentity;$('newNameToggle').onclick=()=>{$('newNamePanel').hidden=!$('newNamePanel').hidden};$('registerMemberBtn').onclick=registerMember;$('saveIdentityBtn').onclick=saveIdentity;
+$('reloadBtn').onclick=()=>{closeModal('menuModal');refresh(true)};$('exportBtn').onclick=createLineImage;$('shareImageBtn').onclick=shareImage;
+$('adminBtn').onclick=()=>{closeModal('menuModal');if(adminMode){renderAdmin();openModal('adminModal')}else{$('adminPasswordInput').value='';openModal('adminLoginModal')}};$('adminLoginBtn').onclick=enterAdmin;$('adminFab').onclick=()=>openEventEditor('');$('newEventBtn').onclick=()=>openEventEditor('');$('saveEventBtn').onclick=saveEvent;
+document.querySelectorAll('[data-admin-tab]').forEach(b=>b.onclick=()=>{document.querySelectorAll('[data-admin-tab]').forEach(x=>x.classList.toggle('active',x===b));$('adminEventsPanel').hidden=b.dataset.adminTab!=='events';$('adminMembersPanel').hidden=b.dataset.adminTab!=='members';renderAdmin()});
+$('listViewBtn').onclick=()=>setView('list');$('calendarViewBtn').onclick=()=>setView('calendar');$('calPrev').onclick=()=>setCalendarMonth(-1);$('calNext').onclick=()=>setCalendarMonth(1);$('calToday').onclick=()=>{calendarCursor=new Date();calendarCursor.setDate(1);renderCalendar()};
+$('fTitle').addEventListener('input',()=>{renderEmojiSuggestion();if(!emojiManual){$('fEmoji').value=guessEmoji($('fTitle').value);renderEmojiPicker()}});$('fEmoji').addEventListener('input',()=>{emojiManual=true;renderEmojiPicker()});$('fStartDate').addEventListener('change',autoDateLabel);$('fEndDate').addEventListener('change',autoDateLabel);$('fDateLabel').addEventListener('input',()=>{$('fDateLabel').dataset.manual='1'});
+document.addEventListener('visibilitychange',()=>{if(document.visibilityState==='visible'&&!DEMO)refresh(false)});
+$('appTitle').textContent=CFG.APP_TITLE||'なんでもエンタメ倶楽部';$('appSubtitle').textContent=CFG.APP_SUBTITLE||'';
+refresh(false);setInterval(()=>{if(!DEMO&&document.visibilityState==='visible')refresh(false)},60000);
 })();
 </script>
 </body>
